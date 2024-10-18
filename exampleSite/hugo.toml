@@ -61,6 +61,13 @@ enableEmoji = true
     # The sections of the home page alternate styling. Mark invert as true to swap the styling of the sections
     invertSectionColors = false
     
+    # Options used for automatic image generation. see: https://gohugo.io/content-management/image-processing/
+    image_options = "webp q90 lanczos photo"
+
+    # Use "page_title | site_title" for <title> tags
+    # e.g. <title>Legal | Jane Doe - Nutrition Coach & Chef Consultant</title>
+    combine_page_and_site_title = false
+    
     [params.footer]
     # Show contact icons for email/phone (if specified) in the footer of the page
     showContactIcons = false
@@ -90,7 +97,7 @@ enableEmoji = true
     #     url = ""
     #     icon = ""
 
-# Define additіonal languages
+# Define additional languages
 [languages]
   [languages.en]
     weight = 10
