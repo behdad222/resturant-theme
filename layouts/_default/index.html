@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $headless := .GetPage "./homepage" }}
+{{ $headless := .GetPage "./menu/category" }}
 {{ $sections := $headless.Resources.ByType "page" }}
 {{ $sections := cond .Site.BuildDrafts $sections (where $sections "Draft" "==" false) }}
 {{ $content := where (where $sections "Params.external" "==" nil) "Params.detailed_page_homepage_content" "ne" false }}
@@ -124,7 +124,21 @@
             <a class='fn-item' item_index='{{ (add $last_index_val 2) }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
         {{ end }}
     </div>
+     <!-- {{ range $key, $value := .Params }}
+    {{ printf "%#v = %#v" $key $value }} <br/>
+{{ end }} 
 
+
+
+
+
+{{.Language}}
+
+{{range $pages := .Site.Pages }}
+<body>
+  <div> {{ $pages }} </div>
+</body>
+{{ end }} -->
     <!-- Render single-page content -->
     {{ range $index_val, $elem_val := $content }}
         {{ if .Title }}
@@ -135,7 +149,21 @@
                     <h2 class="post-title">{{ .Title | emojify | safeHTML }}</h2>
                 </header>
                 <section class="post-content">
-                    {{ .Content }}
+                  {{ $catId := .Params.Category_id}}
+                  {{range $items, $element  := .Site.Pages }}
+                    {{ if isset $element.Params "category_id"  }}
+                      {{ if eq $element.Params.Category_id $catId }}
+                        {{ if eq .Type "item" }}
+                          <div class="container wrapper list">
+                            {{ partial "head.html" . }}
+                            <ul class="posts">
+                              {{ partial "item.html" . }}
+                            </ul>
+                          </div>
+                        {{ end }}
+                      {{ end }}
+                    {{ end }}
+                  {{ end }}
                 </section>
             </article>
             <div class='post-after{{ if and (ne .Site.Params.invertSectionColors true) (modBool $index_val 2) }} light{{ else if and (eq .Site.Params.invertSectionColors true) (not (modBool $index_val 2)) }} light{{ end }}'></div>
