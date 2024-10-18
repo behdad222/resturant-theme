@@ -1,0 +1,52 @@
+<div class="post-summary">
+	<a class="title" href="{{ .RelPermalink }}">{{.Title}}</a>
+	<br>
+
+	<span class="post-content">	
+		<img src="{{ .Params.Image }}"/>
+
+		{{ if in $.Language "en" }}
+			<b>{{ .Params.Name_en }}</b>
+			</br>
+			{{ .Params.Description_en }}
+			</br>
+			{{ if gt .Params.Ingredients_en 0 }}
+				{{ range $index, $element :=  .Params.Ingredients_en }}
+					{{ . }}
+				{{ end }}
+			{{ end }}
+			<br>
+			{{ .Params.Price }} Toman
+		{{ end }}
+
+		{{ if in $.Language "ar" }}
+			<b>{{ .Params.Name_ar }}</b>
+			</br>
+			{{ .Params.Description_ar }}
+			</br>
+			{{ if gt .Params.Ingredients_ar 0 }}
+				{{ range $index, $element :=  .Params.Ingredients_ar }}
+					{{ . }}
+				{{ end }}
+			{{ end }}
+			<br>
+			{{ .Params.Price }} تمن
+		{{ end }}
+
+		{{ if in $.Language "fa" }}
+			<b>{{ .Params.Name_fa }}</b>
+			</br>
+			{{ .Params.Description_fa }}
+			</br>
+			{{ if gt .Params.Ingredients_fa 0 }}
+				{{ range $index, $element :=  .Params.Ingredients_fa }}
+					{{ . }}
+				{{ end }}
+			{{ end }}
+			<br>
+			{{ .Params.Price }} تومن
+		{{ end }}
+
+		</br>
+	</span>
+</div>
