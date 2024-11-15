@@ -39,6 +39,7 @@
 			{{ .Params.Description_fa }}
 			</br>
 			{{ if gt .Params.Ingredients_fa 0 }}
+			مواد تشکیل دهنده:
 				{{ range $index, $element :=  .Params.Ingredients_fa }}
 					{{ . }}
 				{{ end }}
