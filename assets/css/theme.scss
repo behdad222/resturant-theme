@@ -72,7 +72,8 @@ body {
 
   #site-languages .btn-lang {
     text-decoration: none;
-    background-color: var(--highlight);
+    border-color: var(--highlight);
+    border: 2px solid var(--highlight);
     color: var(--highlight-contrast);
     border-radius: 5px;
     -webkit-border-radius: 5px;
