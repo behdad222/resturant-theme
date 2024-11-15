@@ -167,7 +167,8 @@
                   {{ end }}
                 </section>
             </article>
-            </div>
+            <div class='post-after{{ if and (ne .Site.Params.invertSectionColors true) (modBool $index_val 2) }} light{{ else if and (eq .Site.Params.invertSectionColors true) (not (modBool $index_val 2)) }} light{{ end }}'></div>
+        </div>
         {{ end }}
     {{ end }}
 </main>
