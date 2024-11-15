@@ -149,6 +149,7 @@
                     <h2 class="post-title">{{ .Title | emojify | safeHTML }}</h2>
                 </header>
                 <section class="post-content">
+                  {{ .Content }}
                   {{ $catId := .Params.Category_id}}
                   {{range $items, $element  := .Site.Pages }}
                     {{ if isset $element.Params "category_id"  }}
