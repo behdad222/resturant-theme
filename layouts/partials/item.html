@@ -5,6 +5,7 @@
 	<span class="post-content">	
 		<img class="item-image" src="{{ .Params.Image }}"/>
 
+		</br>
 		{{ if in $.Language "en" }}
 			<b>{{ .Params.Name_en }}</b>
 			</br>
@@ -45,7 +46,7 @@
 				{{ end }}
 			{{ end }}
 			<br>
-			{{ partial "persianNumber.html" .Params.Price }} تومن
+			{{ partial "persianNumber.html" .Params.Price }} تومان
 		{{ end }}
 
 		</br>
