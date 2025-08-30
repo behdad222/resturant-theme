@@ -1,9 +1,9 @@
 :root {
 
     /* === Cover / Landing area === */
-    --cover-text-color: #02316a;
+    --cover-text-color: #001939;
     /* Used for Landing screen menu buttons, but potentially usable for highlighting other things */
-    --highlight: #02316a;
+    --highlight: #001939;
     --highlight-contrast: var(--cover-text-color);
     /*inverse colors used for :hover */
     --highlight-inverse: var(--cover-text-color);
@@ -20,14 +20,14 @@
 
     /* === Alternating content (post) sections  === */
     /* Light section - text color */
-    --section-light-text-color: #02316a;
+    --section-light-text-color: #001939;
     /* Light section - background color */
     --section-light-bg-color: #ffffff;
 
     /* Dark section - text color */
     --section-dark-text-color: var(--section-light-bg-color);
     /* Dark section - background color */
-    --section-dark-bg-color: #02316a;
+    --section-dark-bg-color: #001939;
 
     /* Light&Dark section >quote. Suppressive color, compared to 'Light section - text color'*/
     --section-uni-quote: grey;
