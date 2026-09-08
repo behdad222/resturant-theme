@@ -1,3 +1,13 @@
+<div class="contact-cards-grid">
 {{ range .Site.Params.contacts }}
-    <p><i class="{{ .icon }}"></i>&nbsp;<a href="{{ .url | safeURL }}">{{ .value }}</a></p>
+    <a class="contact-card" href="{{ .url | safeURL }}">
+        <div class="contact-icon-box">
+            <i class="{{ .icon }}"></i>
+        </div>
+        <div class="contact-details">
+            <span class="contact-label">{{ .label }}</span>
+            <span class="contact-value">{{ .value }}</span>
+        </div>
+    </a>
 {{ end }}
+</div>

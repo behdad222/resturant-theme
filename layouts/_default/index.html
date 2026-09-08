@@ -84,6 +84,7 @@
               {{ with .Params.header_subheadline }}<h2 class="blog-description">{{ . | safeHTML }}</h2>{{ end }}
             {{ if .Site.Params.title_guard }}</div>{{ end }}
 
+            <div class="header-menu-container">
             {{ range where $sections ".Params.header_menu" "eq" true }}
               {{ $button_title := .Title }}
               {{ with .Params.header_menu_title }}{{ $button_title = . }}{{ end }}
@@ -97,6 +98,7 @@
                  <a class='btn site-menu' data-title-anchor='{{ anchorize $fnav_title }}' href='#{{ anchorize $fnav_title }}'>{{ $button_title }}</a>
               {{ end }}
             {{ end }}
+            </div>
 
             {{ with (index $content 0) }}
                 {{ $first_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $first_title = . }}{{ end }}
@@ -150,20 +152,19 @@
                 </header>
                 <section class="post-content">
                   {{ .Content }}
-                  {{ $catId := .Params.Category_id}}
-                  {{range $items, $element  := .Site.Pages }}
-                    {{ if isset $element.Params "category_id"  }}
-                      {{ if eq $element.Params.Category_id $catId }}
+                  {{ $catId := .Params.Category_id }}
+                  {{ if $catId }}
+                  <div class="menu-items-grid">
+                  {{ range .Site.Pages }}
+                    {{ if isset .Params "category_id" }}
+                      {{ if eq (lower .Params.Category_id) (lower $catId) }}
                         {{ if eq .Type "item" }}
-                          <div class="container wrapper list">
-                            {{ partial "head.html" . }}
-                            <ul class="posts">
-                              {{ partial "item.html" . }}
-                            </ul>
-                          </div>
+                          {{ partial "item.html" . }}
                         {{ end }}
                       {{ end }}
                     {{ end }}
+                  {{ end }}
+                  </div>
                   {{ end }}
                 </section>
             </article>

@@ -1,28 +1,71 @@
 
 /* ==========================================================================
-   8. Media Queries - Smaller than 1130px
+   8. Media Queries - Smaller than 1130px (Tablets & Mobile)
    ========================================================================== */
 
 @media only screen and (max-width: 1130px) {
-  /* makes it a top sticky menu */
+  /* Elegant horizontal scrollable pill navbar */
   .fixed-nav {
     opacity: 1;
     position: fixed;
     top: 0px;
     left: 0px;
-    flex-wrap: wrap;
+    right: 0px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    display: none; // Managed by JS fadeIn/fadeOut
+    flex-wrap: nowrap;
     flex-direction: row;
-    width: 100vw;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     z-index: 99999;
-    background: var(--color-background);
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 2px 12px rgba(0, 25, 57, 0.08);
+    border-bottom: 1px solid rgba(0, 25, 57, 0.06);
     border-radius: 0;
-    text-align: center;
-    padding: 4px;
+    text-align: right;
+    padding: 8px 12px;
+    padding-top: calc(8px + env(safe-area-inset-top, 0px));
+    gap: 8px;
+    scroll-padding: 0 12px;
   }
 
   a.fn-item {
-    display: inline;
-    margin-left: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 7px 15px;
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.2;
+    border-radius: 9999px;
+    background: rgba(0, 25, 57, 0.05);
+    color: var(--section-light-text-color);
+    border: 1px solid rgba(0, 25, 57, 0.1);
+    text-decoration: none;
+    margin: 0;
+    opacity: 0.85;
+    transition: all 0.2s ease;
+
+    &:hover,
+    &.active {
+      opacity: 1;
+      background: var(--highlight);
+      color: #ffffff;
+      border-color: var(--highlight);
+      box-shadow: 0 2px 8px rgba(0, 25, 57, 0.2);
+    }
   }
 
   blockquote {
@@ -34,13 +77,45 @@
   }
 
   #site-head {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
-    min-height: 240px;
-    padding: 15% 0;
-    height: 100%;
+    min-height: 80vh;
+    min-height: 80dvh;
+    height: auto;
+    padding: 12% 16px;
     margin-bottom: 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  .header-menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #site-head a.btn {
+    font-size: 1.35rem;
+    padding: 8px 18px;
+    margin-top: 0;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-weight: 500;
   }
 
   .blog-title {
@@ -60,7 +135,7 @@
 
   /* skip the top menu when scrolling */
   .post-holder .post {
-      scroll-margin-top: 48px;
+    scroll-margin-top: 58px;
   }
 
   .post-template .post {
@@ -90,67 +165,168 @@
 }
 
 /* ==========================================================================
-   9. Media Queries - Smaller than 500px
+   8.5. Media Queries - Smaller than 768px (Tablets / Phablets)
+   ========================================================================== */
+
+@media only screen and (max-width: 768px) {
+  .menu-items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .contact-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+/* ==========================================================================
+   9. Media Queries - Smaller than 500px (Mobile Phones)
    ========================================================================== */
 
 @media only screen and (max-width: 500px) {
   .post-holder {
-    padding-top: 20px;
+    padding-top: 10px;
+  }
+
+  .post-holder .post {
+    scroll-margin-top: 54px;
   }
 
   #blog-logo {
-    max-height: 80px;
+    max-height: 65px;
+    margin-bottom: 8px;
   }
 
   .inner,
   .pagination {
     width: auto;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-left: 12px;
+    margin-right: 12px;
   }
 
   .post {
     width: auto;
-    margin-left: 16px;
-    margin-right: 16px;
-    font-size: 0.8em;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-size: 0.85em;
     line-height: 1.6em;
   }
 
   #site-head {
-    padding: 10% 0;
-    height: 65%;
+    min-height: 85vh;
+    min-height: 85dvh;
+    padding: 30px 12px;
+    padding-top: calc(30px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
+  }
+
+  #site-head #site-languages {
+    margin-bottom: 12px;
+    text-align: center;
+
+    .btn-lang {
+      font-size: 1.2rem;
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
   }
 
   #header-arrow {
     display: none;
   }
 
-  a.btn {
-    margin-top: 10px;
+  .header-menu-container {
+    gap: 6px;
+    margin-top: 1.2rem;
+  }
+
+  #site-head a.btn {
+    font-size: 1.25rem;
+    padding: 7px 14px;
   }
 
   .blog-title {
-    font-size: 3rem;
+    font-size: 2.8rem;
+    line-height: 1.25;
   }
 
   .blog-description {
-    font-size: 2.2rem;
+    font-size: 1.7rem;
+    line-height: 1.4;
   }
 
   h1,
   h2 {
-    font-size: 3rem;
-    line-height: 1.1em;
-    letter-spacing: -1px;
+    font-size: 2.5rem;
+    line-height: 1.2em;
+    letter-spacing: 0;
+  }
+
+  .post-title {
+    font-size: 2.3rem;
   }
 
   h3 {
-    font-size: 2.8rem;
+    font-size: 2.1rem;
   }
 
   h4 {
-    font-size: 2.3rem;
+    font-size: 1.8rem;
+  }
+
+  /* Single-column food cards on phones */
+  .menu-items-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .menu-item-card {
+    border-radius: 14px;
+  }
+
+  .menu-item-img-wrapper {
+    aspect-ratio: 16 / 9;
+  }
+
+  .menu-item-info {
+    padding: 12px 14px;
+  }
+
+  .menu-item-title {
+    font-size: 1.65rem;
+  }
+
+  .menu-item-price {
+    font-size: 1.45rem;
+  }
+
+  .menu-item-description {
+    font-size: 1.25rem;
+    margin: 4px 0 8px 0;
+  }
+
+  .contact-cards-grid {
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .contact-card {
+    padding: 10px 14px;
+    border-radius: 12px;
+  }
+
+  .contact-icon-box {
+    width: 38px;
+    height: 38px;
+    font-size: 1.5rem;
+  }
+
+  .contact-value {
+    font-size: 1.35rem;
   }
 
   .post-template .post {
@@ -158,10 +334,12 @@
   }
 
   .post-template .post-header {
-    padding: 30px 0;
+    padding: 24px 0;
   }
 
   .site-footer {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    padding: 1.5rem 1rem;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
   }
 }

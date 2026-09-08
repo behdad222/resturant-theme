@@ -45,4 +45,13 @@
     /* === Lists === */
     /* define list element for unnumbered lists, leave empty for default list element */
     --ul-li-icon: fa-asterisk;
+
+    /* === Menu Cards & Accents === */
+    --card-light-bg: #ffffff;
+    --card-light-border: rgba(0, 25, 57, 0.08);
+    --card-light-shadow: 0 4px 16px rgba(0, 25, 57, 0.06);
+    --card-dark-bg: rgba(255, 255, 255, 0.05);
+    --card-dark-border: rgba(255, 255, 255, 0.12);
+    --card-dark-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    --accent-gold: #C4944C;
 }

@@ -1,54 +1,71 @@
-<div class="post-summary">
-	<a class="title" href="{{ .RelPermalink }}">{{.Title}}</a>
-	<br>
+<div class="menu-item-card">
+	{{ if .Params.Image }}
+	<div class="menu-item-img-wrapper">
+		<img class="menu-item-image" src="{{ .Params.Image | relURL }}" alt="{{ or .Params.Name_fa .Title }}" loading="lazy" />
+		{{ if or .Params.vegan .Params.Vegan }}
+		<span class="badge-vegan">🌱 {{ if in $.Language "en" }}Vegan{{ else if in $.Language "ar" }}نباتي{{ else }}گیاهی{{ end }}</span>
+		{{ end }}
+	</div>
+	{{ end }}
 
-	<span class="post-content">	
-		<img class="item-image" src="{{ .Params.Image }}"/>
+	<div class="menu-item-info">
+		<div class="menu-item-header">
+			<h3 class="menu-item-title">
+				{{ if in $.Language "en" }}
+					{{ or .Params.Name_en .Params.Name_fa .Title }}
+				{{ else if in $.Language "ar" }}
+					{{ or .Params.Name_ar .Params.Name_fa .Title }}
+				{{ else }}
+					{{ or .Params.Name_fa .Title }}
+				{{ end }}
+			</h3>
 
-		</br>
+			{{ if .Params.Price }}
+			<div class="menu-item-price">
+				{{ if in $.Language "en" }}
+					<span class="price-val">{{ .Params.Price }}</span>
+					<span class="price-unit">Toman</span>
+				{{ else if in $.Language "ar" }}
+					<span class="price-val">{{ .Params.Price }}</span>
+					<span class="price-unit">تمن</span>
+				{{ else }}
+					<span class="price-val">{{ partial "persianNumber.html" .Params.Price }}</span>
+					<span class="price-unit">تومان</span>
+				{{ end }}
+			</div>
+			{{ end }}
+		</div>
+
+		{{ $desc := "" }}
 		{{ if in $.Language "en" }}
-			<b>{{ .Params.Name_en }}</b>
-			</br>
-			{{ .Params.Description_en }}
-			</br>
-			{{ if gt .Params.Ingredients_en 0 }}
-				{{ range $index, $element :=  .Params.Ingredients_en }}
-					{{ . }}
-				{{ end }}
-			{{ end }}
-			<br>
-			{{ .Params.Price }} Toman
+			{{ $desc = or .Params.Description_en .Params.Description_fa }}
+		{{ else if in $.Language "ar" }}
+			{{ $desc = or .Params.Description_ar .Params.Description_fa }}
+		{{ else }}
+			{{ $desc = .Params.Description_fa }}
+		{{ end }}
+		{{ with $desc }}
+		<p class="menu-item-description">{{ . }}</p>
 		{{ end }}
 
-		{{ if in $.Language "ar" }}
-			<b>{{ .Params.Name_ar }}</b>
-			</br>
-			{{ .Params.Description_ar }}
-			</br>
-			{{ if gt .Params.Ingredients_ar 0 }}
-				{{ range $index, $element :=  .Params.Ingredients_ar }}
-					{{ . }}
-				{{ end }}
-			{{ end }}
-			<br>
-			{{ .Params.Price }} تمن
+		{{ $ingredients := slice }}
+		{{ if in $.Language "en" }}
+			{{ $ingredients = .Params.Ingredients_en }}
+		{{ else if in $.Language "ar" }}
+			{{ $ingredients = .Params.Ingredients_ar }}
+		{{ else }}
+			{{ $ingredients = .Params.Ingredients_fa }}
 		{{ end }}
 
-		{{ if in $.Language "fa" }}
-			<b>{{ .Params.Name_fa }}</b>
-			</br>
-			{{ .Params.Description_fa }}
-			</br>
-			{{ if gt .Params.Ingredients_fa 0 }}
-			مواد تشکیل دهنده:
-				{{ range $index, $element :=  .Params.Ingredients_fa }}
-					{{ . }}
+		{{ if and $ingredients (gt (len $ingredients) 0) }}
+		<div class="menu-item-ingredients">
+			<span class="ingredients-label">{{ if in $.Language "en" }}Ingredients:{{ else if in $.Language "ar" }}المكونات:{{ else }}مواد تشکیل‌دهنده:{{ end }}</span>
+			<div class="ingredients-tags">
+				{{ range $ingredients }}
+					<span class="ingredient-tag">{{ . }}</span>
 				{{ end }}
-			{{ end }}
-			<br>
-			{{ partial "persianNumber.html" .Params.Price }} تومان
+			</div>
+		</div>
 		{{ end }}
-
-		</br>
-	</span>
+	</div>
 </div>
