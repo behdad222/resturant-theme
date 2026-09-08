@@ -63,6 +63,7 @@
 	{{ $num_lang := len $translations }}
 	{{ if and (gt $num_lang 1) $.Site.Params.language_menu }}
 	<div id="site-languages" class="inner">
+    <div class="lang-switcher-wrap">
     {{ range $translations }}
       {{ $lang_title := or .Language.LanguageName (.Lang | strings.ToUpper) }}
       {{ if eq .Lang $.Lang }}
@@ -73,6 +74,7 @@
         <a class='btn-lang' href='{{ .RelPermalink }}'>{{ $lang_title }}</a>
       {{ end }}
     {{ end }}
+    </div>
 	</div>
 	{{ end }}
 

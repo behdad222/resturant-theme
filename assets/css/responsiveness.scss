@@ -6,33 +6,15 @@
 @media only screen and (max-width: 1130px) {
   /* Elegant horizontal scrollable pill navbar */
   .fixed-nav {
-    opacity: 1;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    width: 100%;
-    max-width: 100vw;
-    box-sizing: border-box;
-    display: none; // Managed by JS fadeIn/fadeOut
-    flex-wrap: nowrap;
-    flex-direction: row;
-    align-items: center;
+    justify-content: flex-start;
     overflow-x: auto;
     overflow-y: hidden;
+    flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
     }
-    z-index: 99999;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 2px 12px rgba(0, 25, 57, 0.08);
-    border-bottom: 1px solid rgba(0, 25, 57, 0.06);
-    border-radius: 0;
-    text-align: right;
     padding: 8px 12px;
     padding-top: calc(8px + env(safe-area-inset-top, 0px));
     gap: 8px;
@@ -40,32 +22,8 @@
   }
 
   a.fn-item {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    white-space: nowrap;
     padding: 7px 15px;
     font-size: 1.35rem;
-    font-weight: 500;
-    line-height: 1.2;
-    border-radius: 9999px;
-    background: rgba(0, 25, 57, 0.05);
-    color: var(--section-light-text-color);
-    border: 1px solid rgba(0, 25, 57, 0.1);
-    text-decoration: none;
-    margin: 0;
-    opacity: 0.85;
-    transition: all 0.2s ease;
-
-    &:hover,
-    &.active {
-      opacity: 1;
-      background: var(--highlight);
-      color: #ffffff;
-      border-color: var(--highlight);
-      box-shadow: 0 2px 8px rgba(0, 25, 57, 0.2);
-    }
   }
 
   blockquote {
@@ -185,6 +143,18 @@
    ========================================================================== */
 
 @media only screen and (max-width: 500px) {
+  .fixed-nav {
+    padding: 6px 8px;
+    padding-top: calc(6px + env(safe-area-inset-top, 0px));
+    gap: 6px;
+    scroll-padding: 0 8px;
+  }
+
+  a.fn-item {
+    padding: 6px 13px;
+    font-size: 1.25rem;
+  }
+
   .post-holder {
     padding-top: 10px;
   }
