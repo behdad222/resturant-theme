@@ -117,7 +117,6 @@
         <div class="fixed-nav-wrapper">
             <button type="button" class="fn-search-btn" id="fixed-nav-search-btn" aria-label="{{ if in $.Language "en" }}Search in menu{{ else if in $.Language "ar" }}البحث في القائمة{{ else }}جستجو در منو{{ end }}" title="{{ if in $.Language "en" }}Search in menu{{ else if in $.Language "ar" }}البحث في القائمة{{ else }}جستجو در منو{{ end }}">
                 <i class="fa fa-search"></i>
-                <span class="search-text">{{ if in $.Language "en" }}Search{{ else if in $.Language "ar" }}بحث{{ else }}جستجو{{ end }}</span>
             </button>
             <div class="fn-items-container">
                 {{ if eq .Params.nav_to_top_weight "first" }}
