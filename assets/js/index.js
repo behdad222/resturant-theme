@@ -130,6 +130,14 @@ var $sitehead = $("#site-head");
     var $resetBtn = $("#search-reset-btn");
     var activeFilter = "all";
 
+    // Fixed Top Nav Search Elements
+    var $fixedNavSearchBtn = $("#fixed-nav-search-btn");
+    var $fixedNavWrapper = $(".fixed-nav-wrapper");
+    var $fixedNavSearchBar = $("#fixed-nav-search-bar");
+    var $fixedSearchInput = $("#fixed-menu-search-input");
+    var $fixedClearBtn = $("#fixed-menu-search-clear");
+    var $fixedCloseBtn = $("#fixed-nav-search-close");
+
     function normalizeText(str) {
       if (!str) return "";
       return str.toString()
@@ -150,8 +158,14 @@ var $sitehead = $("#site-head");
 
       if (rawQuery.length > 0) {
         $clearBtn.show();
+        $fixedClearBtn.show();
+        $fixedNavSearchBtn.addClass("has-query");
       } else {
         $clearBtn.hide();
+        $fixedClearBtn.hide();
+        if (activeFilter === "all") {
+          $fixedNavSearchBtn.removeClass("has-query");
+        }
       }
 
       var totalVisibleItems = 0;
@@ -218,12 +232,58 @@ var $sitehead = $("#site-head");
       }
     }
 
+    // Toggle Fixed Nav Search
+    $fixedNavSearchBtn.on("click", function (e) {
+      e.preventDefault();
+      $fixedNavWrapper.hide();
+      $fixedNavSearchBar.css("display", "flex").hide().fadeIn(200);
+      $fixedSearchInput.val($searchInput.val());
+      if ($fixedSearchInput.val().length > 0) {
+        $fixedClearBtn.show();
+      } else {
+        $fixedClearBtn.hide();
+      }
+      setTimeout(function () {
+        $fixedSearchInput.focus();
+      }, 50);
+    });
+
+    $fixedCloseBtn.on("click", function (e) {
+      e.preventDefault();
+      $fixedNavSearchBar.hide();
+      $fixedNavWrapper.css("display", "flex").hide().fadeIn(200);
+    });
+
+    // Escape key closes search bar
+    $(document).on("keydown", function (e) {
+      if (e.key === "Escape" && $fixedNavSearchBar.is(":visible")) {
+        $fixedCloseBtn.trigger("click");
+      }
+    });
+
+    // Fixed Search input events
+    $fixedSearchInput.on("input keyup paste", function () {
+      var val = $fixedSearchInput.val();
+      $searchInput.val(val);
+      filterMenu();
+    });
+
+    $fixedClearBtn.on("click", function () {
+      $fixedSearchInput.val("").focus();
+      $searchInput.val("");
+      filterMenu();
+    });
+
+    // Main page search input events
     $searchInput.on("input keyup paste", function () {
+      var val = $searchInput.val();
+      $fixedSearchInput.val(val);
       filterMenu();
     });
 
     $clearBtn.on("click", function () {
       $searchInput.val("").focus();
+      $fixedSearchInput.val("");
       filterMenu();
     });
 
@@ -236,6 +296,7 @@ var $sitehead = $("#site-head");
 
     $resetBtn.on("click", function () {
       $searchInput.val("");
+      $fixedSearchInput.val("");
       $filterChips.removeClass("active");
       $('.filter-chip[data-filter="all"]').addClass("active");
       activeFilter = "all";

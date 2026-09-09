@@ -265,7 +265,6 @@ body {
   max-width: 100vw;
   box-sizing: border-box;
   display: none; /* Managed by JS fadeIn/fadeOut */
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   z-index: 99999;
@@ -276,8 +275,195 @@ body {
   border-bottom: 1px solid rgba(0, 25, 57, 0.06);
   padding: 10px 20px;
   padding-top: calc(10px + env(safe-area-inset-top, 0px));
-  gap: 8px;
   font-family: "Shabnam";
+}
+
+.fixed-nav-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fn-search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 8px 18px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: 9999px;
+  background: #001939;
+  color: #ffffff;
+  border: 1.5px solid #001939;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 25, 57, 0.2);
+  gap: 8px;
+  font-family: "Shabnam", sans-serif;
+  user-select: none;
+
+  i {
+    font-size: 1.3rem;
+    color: var(--accent-gold, #d4af37);
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    background: #002d66;
+    border-color: #002d66;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 25, 57, 0.28);
+
+    i {
+      transform: scale(1.1);
+    }
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  &.has-query {
+    background: linear-gradient(135deg, #001939 0%, #002d66 100%);
+    border-color: var(--accent-gold, #d4af37);
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.35);
+  }
+}
+
+.fn-items-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.fixed-nav-search-bar {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  display: none;
+  align-items: center;
+  box-sizing: border-box;
+  animation: fixedSearchFadeIn 0.2s ease;
+}
+
+@keyframes fixedSearchFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fixed-nav-search-inner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .fixed-search-icon {
+    position: absolute;
+    right: 16px;
+    font-size: 1.5rem;
+    color: #001939;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  input#fixed-menu-search-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 46px 0 42px;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(0, 25, 57, 0.18);
+    background: #ffffff;
+    font-family: "Shabnam", sans-serif;
+    font-size: 1.35rem;
+    color: #001939;
+    outline: none;
+    box-shadow: 0 2px 10px rgba(0, 25, 57, 0.08);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: rgba(0, 25, 57, 0.45);
+      font-size: 1.3rem;
+    }
+
+    &:focus {
+      border-color: #001939;
+      box-shadow: 0 4px 18px rgba(0, 25, 57, 0.16);
+    }
+  }
+
+  .fixed-search-clear-btn {
+    position: absolute;
+    left: 14px;
+    background: rgba(0, 25, 57, 0.08);
+    border: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    color: #001939;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    padding: 0;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #001939;
+      color: #ffffff;
+    }
+  }
+
+  .fixed-search-close-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 25, 57, 0.12);
+    background: rgba(0, 25, 57, 0.05);
+    color: #001939;
+    font-family: "Shabnam", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+
+    i {
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      background: rgba(0, 25, 57, 0.1);
+      color: #001939;
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
 }
 
 a.fn-item {

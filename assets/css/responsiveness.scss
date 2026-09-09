@@ -4,8 +4,25 @@
    ========================================================================== */
 
 @media only screen and (max-width: 1130px) {
-  /* Elegant horizontal scrollable pill navbar */
+  /* Elegant horizontal scrollable pill navbar with fixed search button */
   .fixed-nav {
+    padding: 8px 10px;
+    padding-top: calc(8px + env(safe-area-inset-top, 0px));
+  }
+
+  .fixed-nav-wrapper {
+    justify-content: flex-start;
+    gap: 8px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .fn-search-btn {
+    padding: 7px 14px;
+    font-size: 1.3rem;
+  }
+
+  .fn-items-container {
     justify-content: flex-start;
     overflow-x: auto;
     overflow-y: hidden;
@@ -15,15 +32,15 @@
     &::-webkit-scrollbar {
       display: none;
     }
-    padding: 8px 12px;
-    padding-top: calc(8px + env(safe-area-inset-top, 0px));
-    gap: 8px;
-    scroll-padding: 0 12px;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+    scroll-padding: 0 10px;
   }
 
   a.fn-item {
-    padding: 7px 15px;
-    font-size: 1.35rem;
+    padding: 7px 14px;
+    font-size: 1.3rem;
   }
 
   blockquote {
@@ -153,13 +170,52 @@
   .fixed-nav {
     padding: 6px 8px;
     padding-top: calc(6px + env(safe-area-inset-top, 0px));
+  }
+
+  .fixed-nav-wrapper {
     gap: 6px;
-    scroll-padding: 0 8px;
+  }
+
+  .fn-search-btn {
+    padding: 6px 12px;
+    font-size: 1.25rem;
+    gap: 5px;
+  }
+
+  .fn-items-container {
+    gap: 5px;
+    scroll-padding: 0 6px;
   }
 
   a.fn-item {
-    padding: 6px 13px;
+    padding: 6px 12px;
     font-size: 1.25rem;
+  }
+
+  .fixed-nav-search-inner {
+    input#fixed-menu-search-input {
+      height: 40px;
+      font-size: 1.25rem;
+      padding: 0 40px 0 36px;
+    }
+
+    .fixed-search-icon {
+      right: 14px;
+      font-size: 1.35rem;
+    }
+
+    .fixed-search-clear-btn {
+      left: 10px;
+    }
+
+    .fixed-search-close-btn {
+      height: 40px;
+      padding: 0 12px;
+
+      .close-text {
+        display: none;
+      }
+    }
   }
 
   .post-holder {

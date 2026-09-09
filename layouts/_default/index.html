@@ -112,22 +112,41 @@
 </header>
 
 <main class="content" role="main">
-    <!-- Render sticky left navigation menu -->
+    <!-- Render sticky top navigation menu -->
     <div class='fixed-nav'>
-        {{ if eq .Params.nav_to_top_weight "first" }}
-            {{ $fnav_title := "Start" }}{{ with .Params.nav_to_top_title }}{{ $fnav_title = . }}{{ end }}
-            <a class='fn-item' item_index='{{ 0 }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
-        {{ end }}
-        {{ $last_index_val := 0 }}
-        {{ range $index_val, $elem_val := $content }}
-            {{ $fnav_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $fnav_title = . }}{{ end }}
-            <a class='fn-item' item_index='{{ (add $index_val 1) }}' href='#{{ anchorize $fnav_title }}'>{{ $fnav_title | safeHTML }}</a>
-            {{ $last_index_val = $index_val }}
-        {{ end }}
-        {{ if eq .Params.nav_to_top_weight "last" }}
-            {{ $fnav_title := "Start" }}{{ with .Params.nav_to_top_title }}{{ $fnav_title = . }}{{ end }}
-            <a class='fn-item' item_index='{{ (add $last_index_val 2) }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
-        {{ end }}
+        <div class="fixed-nav-wrapper">
+            <button type="button" class="fn-search-btn" id="fixed-nav-search-btn" aria-label="{{ if in $.Language "en" }}Search in menu{{ else if in $.Language "ar" }}البحث في القائمة{{ else }}جستجو در منو{{ end }}" title="{{ if in $.Language "en" }}Search in menu{{ else if in $.Language "ar" }}البحث في القائمة{{ else }}جستجو در منو{{ end }}">
+                <i class="fa fa-search"></i>
+                <span class="search-text">{{ if in $.Language "en" }}Search{{ else if in $.Language "ar" }}بحث{{ else }}جستجو{{ end }}</span>
+            </button>
+            <div class="fn-items-container">
+                {{ if eq .Params.nav_to_top_weight "first" }}
+                    {{ $fnav_title := "Start" }}{{ with .Params.nav_to_top_title }}{{ $fnav_title = . }}{{ end }}
+                    <a class='fn-item' item_index='{{ 0 }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
+                {{ end }}
+                {{ $last_index_val := 0 }}
+                {{ range $index_val, $elem_val := $content }}
+                    {{ $fnav_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $fnav_title = . }}{{ end }}
+                    <a class='fn-item' item_index='{{ (add $index_val 1) }}' href='#{{ anchorize $fnav_title }}'>{{ $fnav_title | safeHTML }}</a>
+                    {{ $last_index_val = $index_val }}
+                {{ end }}
+                {{ if eq .Params.nav_to_top_weight "last" }}
+                    {{ $fnav_title := "Start" }}{{ with .Params.nav_to_top_title }}{{ $fnav_title = . }}{{ end }}
+                    <a class='fn-item' item_index='{{ (add $last_index_val 2) }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
+                {{ end }}
+            </div>
+        </div>
+        <div class="fixed-nav-search-bar" id="fixed-nav-search-bar" style="display: none;">
+            <div class="fixed-nav-search-inner">
+                <i class="fa fa-search fixed-search-icon"></i>
+                <input type="text" id="fixed-menu-search-input" placeholder="{{ if in $.Language "en" }}Search in menu (e.g. Latte, Pasta, Shake...){{ else if in $.Language "ar" }}البحث في القائمة...{{ else }}جستجو در منو (لاته، پاستا، شیک…){{ end }}" autocomplete="off" />
+                <button type="button" id="fixed-menu-search-clear" class="fixed-search-clear-btn" aria-label="Clear" style="display: none;"><i class="fa fa-times"></i></button>
+                <button type="button" id="fixed-nav-search-close" class="fixed-search-close-btn" aria-label="{{ if in $.Language "en" }}Close{{ else if in $.Language "ar" }}إغلاق{{ else }}بستن{{ end }}">
+                    <i class="fa fa-times"></i>
+                    <span class="close-text">{{ if in $.Language "en" }}Close{{ else if in $.Language "ar" }}إغلاق{{ else }}بستن{{ end }}</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Menu Search & Quick Filter Bar -->
