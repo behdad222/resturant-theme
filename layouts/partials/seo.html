@@ -1,0 +1,75 @@
+<!-- Canonical & Hreflang -->
+<link rel="canonical" href="{{ .Permalink }}" />
+{{ if .IsTranslated }}
+  {{ range .Translations }}
+    <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}" />
+  {{ end }}
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+{{ end }}
+
+<!-- Geo Meta Tags for Local Search -->
+<meta name="geo.region" content="IR-32" />
+<meta name="geo.placename" content="Mehrshahr, Karaj" />
+<meta name="geo.position" content="35.800922;50.904596" />
+<meta name="ICBM" content="35.800922, 50.904596" />
+
+<!-- Structured Data (JSON-LD) for Google Local Business / Restaurant & Hotel -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["Restaurant", "CafeOrCoffeeShop", "Hotel"],
+  "@id": "{{ .Site.BaseURL }}#organization",
+  "name": "{{ .Site.Title }}",
+  "alternateName": ["HIRAN", "بوتیک هتل و کافه رستوران هیران", "Hiran Complex"],
+  "description": "{{ or .Description .Site.Params.description }}",
+  "url": "{{ .Site.BaseURL }}",
+  "telephone": "+982633405968",
+  "priceRange": "$$",
+  "currenciesAccepted": "IRR",
+  "servesCuisine": [
+    "ایرانی",
+    "کافه و قهوه تخصصی",
+    "صبحانه",
+    "نوشیدنی سرد و گرم",
+    "قلیان",
+    "فست‌فود و فرنگی"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "بلوار شهرداری، خیابان ۱۱۱، نبش عرفان",
+    "addressLocality": "مهرشهر، کرج",
+    "addressRegion": "البرز",
+    "postalCode": "",
+    "addressCountry": "IR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.800922,
+    "longitude": 50.904596
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "17:00",
+      "closes": "22:30"
+    }
+  ],
+  "hasMap": "https://maps.google.com/?q=35.800922,50.904596",
+  "image": [
+    "{{ "images/cover-image.jpg" | absURL }}",
+    "{{ "images/logo.png" | absURL }}"
+  ],
+  "logo": "{{ "images/logo.png" | absURL }}",
+  "menu": "{{ .Site.BaseURL }}"
+}
+</script>
+
