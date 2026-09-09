@@ -1,4 +1,9 @@
-<div class="menu-item-card{{ if or .Params.special .Params.Special }} is-special{{ end }}">
+<div class="menu-item-card{{ if or .Params.special .Params.Special }} is-special{{ end }}"
+	data-name="{{ (or .Params.Name_fa .Title) | lower }}"
+	data-desc="{{ (or .Params.Description_fa "") | lower }}"
+	data-ingredients="{{ delimit (or .Params.Ingredients_fa slice) " " | lower }}"
+	data-special="{{ if or .Params.special .Params.Special }}true{{ else }}false{{ end }}"
+	data-vegan="{{ if or .Params.vegan .Params.Vegan }}true{{ else }}false{{ end }}">
 	{{ if .Params.Image }}
 	<div class="menu-item-img-wrapper">
 		<img class="menu-item-image" src="{{ .Params.Image | relURL }}" alt="{{ or .Params.Name_fa .Title }}" loading="lazy" />

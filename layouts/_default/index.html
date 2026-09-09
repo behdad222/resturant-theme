@@ -129,21 +129,33 @@
             <a class='fn-item' item_index='{{ (add $last_index_val 2) }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
         {{ end }}
     </div>
-     <!-- {{ range $key, $value := .Params }}
-    {{ printf "%#v = %#v" $key $value }} <br/>
-{{ end }} 
 
-
-
-
-
-{{.Language}}
-
-{{range $pages := .Site.Pages }}
-<body>
-  <div> {{ $pages }} </div>
-</body>
-{{ end }} -->
+    <!-- Menu Search & Quick Filter Bar -->
+    <div class="menu-search-section">
+        <div class="menu-search-inner">
+            <div class="menu-search-input-wrap">
+                <i class="fa fa-search search-icon"></i>
+                <input type="text" id="menu-search-input" placeholder="{{ if in $.Language "en" }}Search in menu (e.g. Latte, Pasta, Shake...){{ else if in $.Language "ar" }}البحث في القائمة...{{ else }}جستجو در منو (مثلاً: لاته، پاستا، شیک...){{ end }}" autocomplete="off" />
+                <button type="button" id="menu-search-clear" class="search-clear-btn" aria-label="Clear"><i class="fa fa-times"></i></button>
+            </div>
+            <div class="menu-filter-chips">
+                <button type="button" class="filter-chip active" data-filter="all">
+                    {{ if in $.Language "en" }}All{{ else if in $.Language "ar" }}الكل{{ else }}همه منو{{ end }}
+                </button>
+                <button type="button" class="filter-chip" data-filter="special">
+                    <i class="fa fa-star"></i> {{ if in $.Language "en" }}Specials{{ else if in $.Language "ar" }}المميّز{{ else }}ویژه‌ها{{ end }}
+                </button>
+                <button type="button" class="filter-chip" data-filter="vegan">
+                    🌱 {{ if in $.Language "en" }}Vegan{{ else if in $.Language "ar" }}نباتي{{ else }}گیاهی{{ end }}
+                </button>
+            </div>
+        </div>
+        <div id="search-no-results" class="search-no-results" style="display: none;">
+            <div class="no-results-icon"><i class="fa fa-search"></i></div>
+            <p>{{ if in $.Language "en" }}No items match your search.{{ else if in $.Language "ar" }}لم يتم العثور على أي عنصر.{{ else }}آیتمی با این مشخصات در منو پیدا نشد.{{ end }}</p>
+            <button type="button" id="search-reset-btn" class="btn-reset-search">{{ if in $.Language "en" }}Show Full Menu{{ else if in $.Language "ar" }}عرض القائمة كاملة{{ else }}مشاهده تمام منو{{ end }}</button>
+        </div>
+    </div>
     <!-- Render single-page content -->
     {{ range $index_val, $elem_val := $content }}
         {{ if .Title }}

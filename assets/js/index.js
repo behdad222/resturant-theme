@@ -121,6 +121,126 @@ var $sitehead = $("#site-head");
     }
     $("blockquote p").prepend('<span class="quo fa fa-quote-left"></span>');
     $("blockquote p").append('<span class="quo fa fa-quote-right"></span>');
+
+    // ========== Instant Menu Search & Filter ==========
+    var $searchInput = $("#menu-search-input");
+    var $clearBtn = $("#menu-search-clear");
+    var $filterChips = $(".filter-chip");
+    var $noResults = $("#search-no-results");
+    var $resetBtn = $("#search-reset-btn");
+    var activeFilter = "all";
+
+    function normalizeText(str) {
+      if (!str) return "";
+      return str.toString()
+        .toLowerCase()
+        .replace(/[\u064B-\u065F\u0670]/g, "") // remove arabic diacritics
+        .replace(/ي/g, "ی")
+        .replace(/ك/g, "ک")
+        .replace(/ة/g, "ه")
+        .replace(/آ/g, "ا")
+        .replace(/أ/g, "ا")
+        .replace(/إ/g, "ا")
+        .trim();
+    }
+
+    function filterMenu() {
+      var rawQuery = ($searchInput.val() || "");
+      var query = normalizeText(rawQuery);
+
+      if (rawQuery.length > 0) {
+        $clearBtn.show();
+      } else {
+        $clearBtn.hide();
+      }
+
+      var totalVisibleItems = 0;
+      var isFiltering = query.length > 0 || activeFilter !== "all";
+
+      $(".post-holder").each(function () {
+        var $holder = $(this);
+        var $grid = $holder.find(".menu-items-grid");
+
+        // If this section has no menu items (e.g. contact section)
+        if (!$grid.length) {
+          if (isFiltering) {
+            $holder.hide();
+          } else {
+            $holder.show();
+          }
+          return;
+        }
+
+        var visibleInCategory = 0;
+
+        $grid.find(".menu-item-card").each(function () {
+          var $card = $(this);
+          var name = normalizeText($card.attr("data-name") || "");
+          var desc = normalizeText($card.attr("data-desc") || "");
+          var ingredients = normalizeText($card.attr("data-ingredients") || "");
+          var isSpecial = ($card.attr("data-special") === "true");
+          var isVegan = ($card.attr("data-vegan") === "true");
+
+          var matchesQuery = true;
+          if (query.length > 0) {
+            matchesQuery = name.indexOf(query) !== -1 ||
+                           desc.indexOf(query) !== -1 ||
+                           ingredients.indexOf(query) !== -1;
+          }
+
+          var matchesChip = true;
+          if (activeFilter === "special") {
+            matchesChip = isSpecial;
+          } else if (activeFilter === "vegan") {
+            matchesChip = isVegan;
+          }
+
+          if (matchesQuery && matchesChip) {
+            $card.show();
+            visibleInCategory++;
+            totalVisibleItems++;
+          } else {
+            $card.hide();
+          }
+        });
+
+        if (visibleInCategory > 0) {
+          $holder.show();
+        } else {
+          $holder.hide();
+        }
+      });
+
+      if (totalVisibleItems === 0 && isFiltering) {
+        $noResults.fadeIn("fast");
+      } else {
+        $noResults.hide();
+      }
+    }
+
+    $searchInput.on("input keyup paste", function () {
+      filterMenu();
+    });
+
+    $clearBtn.on("click", function () {
+      $searchInput.val("").focus();
+      filterMenu();
+    });
+
+    $filterChips.on("click", function () {
+      $filterChips.removeClass("active");
+      $(this).addClass("active");
+      activeFilter = $(this).data("filter");
+      filterMenu();
+    });
+
+    $resetBtn.on("click", function () {
+      $searchInput.val("");
+      $filterChips.removeClass("active");
+      $('.filter-chip[data-filter="all"]').addClass("active");
+      activeFilter = "all";
+      filterMenu();
+    });
   });
 
   $post.each(function () {
