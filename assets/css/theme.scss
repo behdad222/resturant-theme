@@ -681,9 +681,9 @@ a.fn-item {
   }
 
   .menu-item-price.is-over .price-val-over {
-    color: #ff6b6b;
-    background: rgba(255, 107, 107, 0.15);
-    border-color: rgba(255, 107, 107, 0.35);
+    color: #ffffff;
+    background: rgba(220, 53, 69, 0.92);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   .ingredient-tag {
@@ -735,7 +735,11 @@ a.fn-item {
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   z-index: 2;
+  line-height: 1.4;
 }
 
 [dir="ltr"] .badge-vegan,
@@ -748,19 +752,24 @@ html[lang="en"] .badge-vegan {
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
   background: rgba(229, 169, 60, 0.92);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 1.15rem;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 9999px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   z-index: 2;
+  line-height: 1.4;
+
+  i {
+    font-size: 1.05rem;
+  }
 }
 
 [dir="ltr"] .badge-special-pill,
@@ -781,17 +790,7 @@ html[lang="en"] .badge-special-pill {
   -webkit-backdrop-filter: blur(2px);
   pointer-events: none;
 
-  span {
-    background: rgba(220, 53, 69, 0.92);
-    color: #ffffff;
-    font-size: 1.35rem;
-    font-weight: 700;
-    padding: 0px 8px;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    letter-spacing: 0.3px;
-  }
+
 }
 
 .menu-item-title-group {
@@ -865,18 +864,24 @@ html[lang="en"] .menu-item-info {
   }
 
   &.is-over {
-    font-size: 1.25rem;
+    display: inline-flex;
+    align-items: center;
 
     .price-val-over {
-      color: #dc3545;
-      background: rgba(220, 53, 69, 0.08);
-      border: 1px solid rgba(220, 53, 69, 0.25);
+      background: rgba(220, 53, 69, 0.92);
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 500;
       padding: 3px 10px;
       border-radius: 9999px;
-      font-size: 1.25rem;
-      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       line-height: 1.4;
-      display: inline-block;
     }
   }
 }

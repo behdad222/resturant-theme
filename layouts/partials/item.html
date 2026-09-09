@@ -12,11 +12,10 @@
 		<span class="badge-vegan">🌱 {{ if in $.Language "en" }}Vegan{{ else if in $.Language "ar" }}نباتي{{ else }}گیاهی{{ end }}</span>
 		{{ end }}
 		{{ if or .Params.special .Params.Special }}
-		<span class="badge-special-pill" title="{{ if in $.Language "en" }}Special{{ else if in $.Language "ar" }}مميّز{{ else }}ویژه{{ end }}"><i class="fa fa-star"></i></span>
+		<span class="badge-special-pill" title="{{ if in $.Language "en" }}Special{{ else if in $.Language "ar" }}مميّز{{ else }}ویژه{{ end }}"><i class="fa fa-star"></i> {{ if in $.Language "en" }}Special{{ else if in $.Language "ar" }}مميّز{{ else }}ویژه{{ end }}</span>
 		{{ end }}
 		{{ if or .Params.over .Params.Over }}
 		<div class="badge-over-overlay">
-			<span>{{ if in $.Language "en" }}Sold Out{{ else if in $.Language "ar" }}نفدت الكمية{{ else }}تمام شد{{ end }}</span>
 		</div>
 		{{ end }}
 	</div>
