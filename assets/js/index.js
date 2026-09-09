@@ -264,4 +264,11 @@ var $sitehead = $("#site-head");
       }
     }
   });
+
+  // Register Service Worker for PWA
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("/sw.js").catch(function () {});
+    });
+  }
 })(jQuery);
