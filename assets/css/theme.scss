@@ -318,7 +318,7 @@ a.fn-item {
     position: absolute;
     z-index: 1;
     width: 100%;
-    height: 20px;
+    height: 10px;
   }
 }
 
@@ -398,6 +398,17 @@ a.fn-item {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(0, 25, 57, 0.12);
   }
+
+  &.is-special {
+    border: 1.5px solid rgba(218, 165, 32, 0.45);
+    background: linear-gradient(135deg, rgba(218, 165, 32, 0.05) 0%, #ffffff 100%);
+    box-shadow: 0 4px 18px rgba(218, 165, 32, 0.12);
+
+    &:hover {
+      box-shadow: 0 8px 24px rgba(218, 165, 32, 0.22);
+      border-color: rgba(218, 165, 32, 0.7);
+    }
+  }
 }
 
 .post-holder.dark {
@@ -409,6 +420,17 @@ a.fn-item {
     &:hover {
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
       border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    &.is-special {
+      border: 1.5px solid rgba(235, 185, 60, 0.45);
+      background: linear-gradient(135deg, rgba(235, 185, 60, 0.09) 0%, rgba(255, 255, 255, 0.06) 100%);
+      box-shadow: 0 4px 18px rgba(235, 185, 60, 0.15);
+
+      &:hover {
+        box-shadow: 0 8px 26px rgba(235, 185, 60, 0.28);
+        border-color: rgba(235, 185, 60, 0.75);
+      }
     }
   }
 
@@ -473,6 +495,58 @@ a.fn-item {
 html[lang="en"] .badge-vegan {
   right: auto;
   left: 10px;
+}
+
+.badge-special-pill {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(229, 169, 60, 0.92);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+[dir="ltr"] .badge-special-pill,
+html[lang="en"] .badge-special-pill {
+  left: auto;
+  right: 10px;
+}
+
+.menu-item-title-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.badge-special-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #d49a24;
+  font-size: 1.35rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(212, 154, 36, 0.4));
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.2) rotate(12deg);
+  }
+}
+
+.post-holder.dark .badge-special-mini {
+  color: #f0b73c;
+  filter: drop-shadow(0 1px 4px rgba(240, 183, 60, 0.6));
 }
 
 .menu-item-info {

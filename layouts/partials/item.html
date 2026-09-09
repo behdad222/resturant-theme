@@ -1,24 +1,32 @@
-<div class="menu-item-card">
+<div class="menu-item-card{{ if or .Params.special .Params.Special }} is-special{{ end }}">
 	{{ if .Params.Image }}
 	<div class="menu-item-img-wrapper">
 		<img class="menu-item-image" src="{{ .Params.Image | relURL }}" alt="{{ or .Params.Name_fa .Title }}" loading="lazy" />
 		{{ if or .Params.vegan .Params.Vegan }}
 		<span class="badge-vegan">🌱 {{ if in $.Language "en" }}Vegan{{ else if in $.Language "ar" }}نباتي{{ else }}گیاهی{{ end }}</span>
 		{{ end }}
+		{{ if or .Params.special .Params.Special }}
+		<span class="badge-special-pill" title="{{ if in $.Language "en" }}Special{{ else if in $.Language "ar" }}مميّز{{ else }}ویژه{{ end }}"><i class="fa fa-star"></i></span>
+		{{ end }}
 	</div>
 	{{ end }}
 
 	<div class="menu-item-info">
 		<div class="menu-item-header">
-			<h3 class="menu-item-title">
-				{{ if in $.Language "en" }}
-					{{ or .Params.Name_en .Params.Name_fa .Title }}
-				{{ else if in $.Language "ar" }}
-					{{ or .Params.Name_ar .Params.Name_fa .Title }}
-				{{ else }}
-					{{ or .Params.Name_fa .Title }}
+			<div class="menu-item-title-group">
+				<h3 class="menu-item-title">
+					{{ if in $.Language "en" }}
+						{{ or .Params.Name_en .Params.Name_fa .Title }}
+					{{ else if in $.Language "ar" }}
+						{{ or .Params.Name_ar .Params.Name_fa .Title }}
+					{{ else }}
+						{{ or .Params.Name_fa .Title }}
+					{{ end }}
+				</h3>
+				{{ if or .Params.special .Params.Special }}
+				<span class="badge-special-mini" title="{{ if in $.Language "en" }}Special{{ else if in $.Language "ar" }}مميّز{{ else }}ویژه{{ end }}"><i class="fa fa-star"></i></span>
 				{{ end }}
-			</h3>
+			</div>
 
 			{{ if .Params.Price }}
 			<div class="menu-item-price">
@@ -59,7 +67,7 @@
 
 		{{ if and $ingredients (gt (len $ingredients) 0) }}
 		<div class="menu-item-ingredients">
-			<span class="ingredients-label">{{ if in $.Language "en" }}Ingredients:{{ else if in $.Language "ar" }}المكونات:{{ else }}مواد تشکیل‌دهنده:{{ end }}</span>
+			<!-- <span class="ingredients-label">{{ if in $.Language "en" }}Ingredients:{{ else if in $.Language "ar" }}المكونات:{{ else }}مواد تشکیل‌دهنده:{{ end }}</span> -->
 			<div class="ingredients-tags">
 				{{ range $ingredients }}
 					<span class="ingredient-tag">{{ . }}</span>
