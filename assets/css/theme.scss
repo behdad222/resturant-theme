@@ -881,18 +881,32 @@ html[lang="en"] .menu-item-info {
   min-height: 48px;
   box-sizing: border-box;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
+    color: inherit;
     transform: translateY(-2px);
-    border-color: var(--highlight);
-    box-shadow: 0 4px 12px rgba(0, 25, 57, 0.08);
+    border-color: var(--accent-gold);
+    box-shadow: 0 4px 14px rgba(196, 148, 76, 0.15);
+
+    .contact-value {
+      color: var(--accent-gold);
+    }
   }
 
   &.static-card {
     cursor: default;
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
       transform: none;
       border-color: rgba(0, 25, 57, 0.1);
       box-shadow: none;
+      color: inherit;
+
+      .contact-value {
+        color: inherit;
+      }
     }
   }
 }
@@ -901,15 +915,31 @@ html[lang="en"] .menu-item-info {
   .contact-card {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
+      color: #ffffff;
       border-color: var(--accent-gold);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 16px rgba(196, 148, 76, 0.2);
+
+      .contact-value {
+        color: var(--accent-gold);
+      }
     }
 
-    &.static-card:hover {
+    &.static-card:hover,
+    &.static-card:active,
+    &.static-card:focus {
+      transform: none;
       border-color: rgba(255, 255, 255, 0.14);
       box-shadow: none;
+      color: #ffffff;
+
+      .contact-value {
+        color: #ffffff;
+      }
     }
   }
 
@@ -923,13 +953,14 @@ html[lang="en"] .menu-item-info {
   width: 42px;
   height: 42px;
   border-radius: 12px;
-  background: var(--highlight);
+  background: #001939;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
   flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
 .contact-details {
