@@ -3,6 +3,7 @@
 {{ $sections := $headless.Resources.ByType "page" }}
 {{ $sections := cond .Site.BuildDrafts $sections (where $sections "Draft" "==" false) }}
 {{ $content := where (where $sections "Params.external" "==" nil) "Params.detailed_page_homepage_content" "ne" false }}
+{{ $content = where $content ".Title" "ne" "" }}
 {{ $translations := .Page.AllTranslations }}
 
 <!-- Welcome screen that scrolls out of view -->

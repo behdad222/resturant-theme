@@ -30,20 +30,31 @@ var $sitehead = $("#site-head");
     }
   }
   $(document).ready(function () {
-    // fallback to jQuery animate if smooth scrolling is not supported
-    if (!"scrollBehavior" in document.documentElement.style) {
-      // Cover buttons
-      $("a.btn.site-menu").click(function (e) {
-        e.preventDefault();
-        srcToAnchorWithTitle($(e.target).data("title-anchor"));
-      });
+    // Cover arrow button smooth scroll
+    $("#header-arrow").on("click", function (e) {
+      e.preventDefault();
+      var $target = $(".post.first");
+      if (!$target.length) {
+        $target = $(".post").first();
+      }
+      if ($target.length) {
+        var offsetTop = $target.offset().top - 60;
+        $("html, body").stop().animate({ scrollTop: offsetTop }, 650);
+      }
+    });
 
-      // cover arrow button
-      $("#header-arrow").click(function (e) {
-        e.preventDefault()
-        srcTo($first);
-      });
-    }
+    // Cover menu buttons smooth scroll
+    $("a.btn.site-menu").on("click", function (e) {
+      var anchor = $(this).data("title-anchor");
+      if (anchor) {
+        var $el = $("#" + anchor);
+        if ($el.length) {
+          e.preventDefault();
+          var offsetTop = $el.offset().top - 60;
+          $("html, body").stop().animate({ scrollTop: offsetTop }, 650);
+        }
+      }
+    });
 
     $(".post.last").next(".post-after").hide();
 
