@@ -121,17 +121,17 @@
             <div class="fn-items-container">
                 {{ if eq .Params.nav_to_top_weight "first" }}
                     {{ $fnav_title := "Start" }}{{ with .Params.nav_to_top_title }}{{ $fnav_title = . }}{{ end }}
-                    <a class='fn-item' item_index='{{ 0 }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
+                    <a class='fn-item' data-item-index='0' item_index='{{ 0 }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
                 {{ end }}
                 {{ $last_index_val := 0 }}
                 {{ range $index_val, $elem_val := $content }}
                     {{ $fnav_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $fnav_title = . }}{{ end }}
-                    <a class='fn-item' item_index='{{ (add $index_val 1) }}' href='#{{ anchorize $fnav_title }}'>{{ $fnav_title | safeHTML }}</a>
+                    <a class='fn-item' data-item-index='{{ (add $index_val 1) }}' item_index='{{ (add $index_val 1) }}' href='#{{ anchorize $fnav_title }}'>{{ $fnav_title | safeHTML }}</a>
                     {{ $last_index_val = $index_val }}
                 {{ end }}
                 {{ if eq .Params.nav_to_top_weight "last" }}
                     {{ $fnav_title := "Start" }}{{ with .Params.nav_to_top_title }}{{ $fnav_title = . }}{{ end }}
-                    <a class='fn-item' item_index='{{ (add $last_index_val 2) }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
+                    <a class='fn-item' data-item-index='{{ (add $last_index_val 2) }}' item_index='{{ (add $last_index_val 2) }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
                 {{ end }}
             </div>
         </div>
@@ -142,7 +142,6 @@
                 <button type="button" id="fixed-menu-search-clear" class="fixed-search-clear-btn" aria-label="Clear" style="display: none;"><i class="fa fa-times"></i></button>
                 <button type="button" id="fixed-nav-search-close" class="fixed-search-close-btn" aria-label="{{ if in $.Language "en" }}Close{{ else if in $.Language "ar" }}إغلاق{{ else }}بستن{{ end }}">
                     <i class="fa fa-times"></i>
-                    <span class="close-text">{{ if in $.Language "en" }}Close{{ else if in $.Language "ar" }}إغلاق{{ else }}بستن{{ end }}</span>
                 </button>
             </div>
         </div>
@@ -179,7 +178,7 @@
         {{ if .Title }}
         {{ $fnav_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $fnav_title = . }}{{ end }}
         <div class='post-holder{{ if and (ne .Site.Params.invertSectionColors true) (not (modBool $index_val 2)) }} dark{{ else if and (eq .Site.Params.invertSectionColors true) (modBool $index_val 2) }} dark{{ end }}'>
-            <article id='{{ anchorize $fnav_title }}' class='post {{ if eq $index_val 0 }}first{{ end }} {{ if eq (add $index_val 1) (len $content) }}last{{ end }}'>
+            <article id='{{ anchorize $fnav_title }}' data-item-index='{{ (add $index_val 1) }}' class='post {{ if eq $index_val 0 }}first{{ end }} {{ if eq (add $index_val 1) (len $content) }}last{{ end }}'>
                 <header class="post-header">
                     <h2 class="post-title">{{ .Title | emojify | safeHTML }}</h2>
                 </header>

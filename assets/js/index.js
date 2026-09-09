@@ -70,44 +70,76 @@ var $sitehead = $("#site-head");
           $(".fixed-nav").css("display", "flex").fadeIn("fast");
         }
 
-        $post.each(function () {
-          if (($(window).height() + w) > ($(document).height() - $(".site-footer").height())) {
-            var l = $postholder.length;
+        var isNearBottom = ($(window).height() + w) >= ($(document).height() - $(".site-footer").height() - 40);
+
+        if (isNearBottom) {
+          var $lastNav = $(".fn-item").not("[href*='site-head']").last();
+          if ($lastNav.length && !$lastNav.hasClass("active")) {
             $(".fn-item").removeClass("active");
-            var lastNav = $(".fn-item[item_index='" + (l) + "']");
-            lastNav.addClass("active");
-            if (lastNav[0] && typeof lastNav[0].scrollIntoView === "function") {
-              lastNav[0].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+            $lastNav.addClass("active");
+            if ($lastNav[0] && typeof $lastNav[0].scrollIntoView === "function") {
+              $lastNav[0].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
             }
-          } else {
-            var f = $(this).offset().top - 80;
-            var b = $(this).offset().top + $(this).height() - 80;
-            var t = $(this).parent(".post-holder").index();
-            var i = $(".fn-item[item_index='" + t + "']");
+          }
+        } else {
+          var activeIndex = null;
+          $(".post[data-item-index]").each(function () {
+            var f = $(this).offset().top - 90;
+            var b = f + $(this).outerHeight();
             var a = $(this)
               .parent(".post-holder")
               .prev(".post-holder")
               .find(".post-after");
 
-            $(this).attr("item_index", t);
-
-            if (w >= f && w <= b) {
-              if (!i.hasClass("active")) {
-                i.addClass("active");
-                if (i[0] && typeof i[0].scrollIntoView === "function") {
-                  i[0].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-                }
-              }
+            if (w >= f && w < b) {
+              activeIndex = $(this).attr("data-item-index");
               a.fadeOut("slow");
             } else {
-              i.removeClass("active");
               a.fadeIn("slow");
             }
+          });
+
+          if (activeIndex) {
+            var $activeItem = $(".fn-item[data-item-index='" + activeIndex + "']");
+            if ($activeItem.length && !$activeItem.hasClass("active")) {
+              $(".fn-item").removeClass("active");
+              $activeItem.addClass("active");
+              if ($activeItem[0] && typeof $activeItem[0].scrollIntoView === "function") {
+                $activeItem[0].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+              }
+            }
           }
-        });
+        }
       });
 
-      $(".fn-item").on("click", function () {
+      $(".fn-item").on("click", function (e) {
+        var $btn = $(this);
+        var itemIdx = $btn.attr("data-item-index");
+        var href = $btn.attr("href");
+
+        if (href === "./#site-head" || href === "#site-head") {
+          e.preventDefault();
+          $(".fn-item").removeClass("active");
+          $btn.addClass("active");
+          $("html, body").stop().animate({ scrollTop: 0 }, 650);
+          return;
+        }
+
+        if (itemIdx) {
+          var $targetPost = $(".post[data-item-index='" + itemIdx + "']");
+          if ($targetPost.length) {
+            e.preventDefault();
+            $(".fn-item").removeClass("active");
+            $btn.addClass("active");
+            if (this.scrollIntoView) {
+              this.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+            }
+            var offsetTop = $targetPost.offset().top - 60;
+            $("html, body").stop().animate({ scrollTop: offsetTop }, 500);
+            return;
+          }
+        }
+
         if (this.scrollIntoView) {
           this.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
         }
