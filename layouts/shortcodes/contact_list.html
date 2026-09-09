@@ -1,13 +1,25 @@
 <div class="contact-cards-grid">
 {{ range .Site.Params.contacts }}
-    <a class="contact-card" href="{{ .url | safeURL }}">
+    {{ if .url }}
+    <a class="contact-card" href="{{ .url | safeURL }}"{{ if (findRE "^https?://" .url) }} target="_blank" rel="noopener noreferrer"{{ end }}>
         <div class="contact-icon-box">
             <i class="{{ .icon }}"></i>
         </div>
         <div class="contact-details">
-            <span class="contact-label">{{ .label }}</span>
+            {{ with .label }}<span class="contact-label">{{ . }}</span>{{ end }}
             <span class="contact-value">{{ .value }}</span>
         </div>
     </a>
+    {{ else }}
+    <div class="contact-card static-card">
+        <div class="contact-icon-box">
+            <i class="{{ .icon }}"></i>
+        </div>
+        <div class="contact-details">
+            {{ with .label }}<span class="contact-label">{{ . }}</span>{{ end }}
+            <span class="contact-value">{{ .value }}</span>
+        </div>
+    </div>
+    {{ end }}
 {{ end }}
 </div>

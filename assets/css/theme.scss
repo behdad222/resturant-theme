@@ -700,6 +700,15 @@ html[lang="en"] .menu-item-info {
     border-color: var(--highlight);
     box-shadow: 0 4px 12px rgba(0, 25, 57, 0.08);
   }
+
+  &.static-card {
+    cursor: default;
+    &:hover {
+      transform: none;
+      border-color: rgba(0, 25, 57, 0.1);
+      box-shadow: none;
+    }
+  }
 }
 
 .post-holder.dark {
@@ -710,6 +719,11 @@ html[lang="en"] .menu-item-info {
     &:hover {
       border-color: var(--accent-gold);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    &.static-card:hover {
+      border-color: rgba(255, 255, 255, 0.14);
+      box-shadow: none;
     }
   }
 
