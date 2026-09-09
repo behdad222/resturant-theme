@@ -1,9 +1,10 @@
-<div class="menu-item-card{{ if or .Params.special .Params.Special }} is-special{{ end }}"
+<div class="menu-item-card{{ if or .Params.special .Params.Special }} is-special{{ end }}{{ if or .Params.over .Params.Over }} is-over{{ end }}"
 	data-name="{{ (or .Params.Name_fa .Title) | lower }}"
 	data-desc="{{ (or .Params.Description_fa "") | lower }}"
 	data-ingredients="{{ delimit (or .Params.Ingredients_fa slice) " " | lower }}"
 	data-special="{{ if or .Params.special .Params.Special }}true{{ else }}false{{ end }}"
-	data-vegan="{{ if or .Params.vegan .Params.Vegan }}true{{ else }}false{{ end }}">
+	data-vegan="{{ if or .Params.vegan .Params.Vegan }}true{{ else }}false{{ end }}"
+	data-over="{{ if or .Params.over .Params.Over }}true{{ else }}false{{ end }}">
 	{{ if .Params.Image }}
 	<div class="menu-item-img-wrapper">
 		<img class="menu-item-image" src="{{ .Params.Image | relURL }}" alt="{{ or .Params.Name_fa .Title }}" loading="lazy" />
@@ -12,6 +13,11 @@
 		{{ end }}
 		{{ if or .Params.special .Params.Special }}
 		<span class="badge-special-pill" title="{{ if in $.Language "en" }}Special{{ else if in $.Language "ar" }}مميّز{{ else }}ویژه{{ end }}"><i class="fa fa-star"></i></span>
+		{{ end }}
+		{{ if or .Params.over .Params.Over }}
+		<div class="badge-over-overlay">
+			<span>{{ if in $.Language "en" }}Sold Out{{ else if in $.Language "ar" }}نفدت الكمية{{ else }}تمام شد{{ end }}</span>
+		</div>
 		{{ end }}
 	</div>
 	{{ end }}
@@ -33,7 +39,11 @@
 				{{ end }}
 			</div>
 
-			{{ if .Params.Price }}
+			{{ if or .Params.over .Params.Over }}
+			<div class="menu-item-price is-over">
+				<span class="price-val-over">{{ if in $.Language "en" }}Sold Out{{ else if in $.Language "ar" }}نفدت الكمية{{ else }}تمام شد{{ end }}</span>
+			</div>
+			{{ else if .Params.Price }}
 			<div class="menu-item-price">
 				{{ if in $.Language "en" }}
 					<span class="price-val">{{ .Params.Price }}</span>

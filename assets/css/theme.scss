@@ -637,6 +637,19 @@ a.fn-item {
       border-color: rgba(218, 165, 32, 0.7);
     }
   }
+
+  &.is-over {
+    opacity: 0.78;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+
+    .menu-item-image {
+      filter: grayscale(80%);
+    }
+
+    &:hover {
+      opacity: 0.95;
+    }
+  }
 }
 
 .post-holder.dark {
@@ -665,6 +678,12 @@ a.fn-item {
   .menu-item-price .price-val,
   .menu-item-price .price-unit {
     color: var(--accent-gold);
+  }
+
+  .menu-item-price.is-over .price-val-over {
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.15);
+    border-color: rgba(255, 107, 107, 0.35);
   }
 
   .ingredient-tag {
@@ -750,6 +769,31 @@ html[lang="en"] .badge-special-pill {
   right: 10px;
 }
 
+.badge-over-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  pointer-events: none;
+
+  span {
+    background: rgba(220, 53, 69, 0.92);
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 700;
+    padding: 0px 8px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.3px;
+  }
+}
+
 .menu-item-title-group {
   display: flex;
   align-items: center;
@@ -818,6 +862,22 @@ html[lang="en"] .menu-item-info {
     font-size: 1.2rem;
     font-weight: normal;
     margin-right: 3px;
+  }
+
+  &.is-over {
+    font-size: 1.25rem;
+
+    .price-val-over {
+      color: #dc3545;
+      background: rgba(220, 53, 69, 0.08);
+      border: 1px solid rgba(220, 53, 69, 0.25);
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+      display: inline-block;
+    }
   }
 }
 
