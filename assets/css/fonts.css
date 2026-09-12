@@ -1,17 +1,83 @@
+/* Modern Persian Typography - Vazirmatn */
 @font-face {
-  font-family: "Shabnam";
-  font-display: auto;
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: local("Vazirmatn Light"), local("Vazirmatn-Light"),
+       url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/Shabnam.woff2") format("woff2"),
-      url("../fonts/Shabnam.woff") format("woff");
+  font-display: swap;
+  src: local("Vazirmatn Regular"), local("Vazirmatn-Regular"), local("Vazirmatn"),
+       url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("Vazirmatn Medium"), local("Vazirmatn-Medium"),
+       url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local("Vazirmatn SemiBold"), local("Vazirmatn-SemiBold"),
+       url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Vazirmatn Bold"), local("Vazirmatn-Bold"),
+       url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Vazirmatn";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: local("Vazirmatn ExtraBold"), local("Vazirmatn-ExtraBold"),
+       url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-ExtraBold.woff2") format("woff2");
+}
+
+/* Alias Shabnam to Vazirmatn for backward compatibility */
+@font-face {
+  font-family: "Shabnam";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Vazirmatn Regular"), local("Vazirmatn-Regular"), local("Vazirmatn"),
+       url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "Shabnam";
-  font-display: auto;
   font-style: normal;
   font-weight: 500;
-  src: url("../fonts/Shabnam-Medium.woff2") format("woff2"),
-      url("../fonts/Shabnam-Medium.woff") format("woff");
+  font-display: swap;
+  src: local("Vazirmatn Medium"), local("Vazirmatn-Medium"),
+       url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Medium.woff2") format("woff2");
 }
+
+@font-face {
+  font-family: "Shabnam";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Vazirmatn Bold"), local("Vazirmatn-Bold"),
+       url("https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Bold.woff2") format("woff2");
+}
+

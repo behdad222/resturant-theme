@@ -1,57 +1,76 @@
 :root {
+    /* === Typography === */
+    --font-primary: "Vazirmatn", "Shabnam", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    /* === Luxury Gold & Champagne Accents === */
+    --accent-gold: #d4af37;
+    --accent-gold-light: #f5e6b3;
+    --accent-gold-hover: #e5be48;
+    --accent-gold-deep: #b38b22;
+    --accent-gold-glow: rgba(212, 175, 55, 0.35);
+    --accent-gold-gradient: linear-gradient(135deg, #d4af37 0%, #f3df9b 50%, #b88d22 100%);
+    --accent-gold-gradient-hover: linear-gradient(135deg, #dfba42 0%, #fae8ad 50%, #c49726 100%);
 
     /* === Cover / Landing area === */
-    --cover-text-color: #001939;
-    /* Used for Landing screen menu buttons, but potentially usable for highlighting other things */
-    --highlight: #001939;
+    --cover-text-color: #0b1422;
+    --highlight: #0b1422;
     --highlight-contrast: var(--cover-text-color);
-    /*inverse colors used for :hover */
     --highlight-inverse: var(--cover-text-color);
     --highlight-inverse-contrast: white;
+    --cover-title-and-description-guard-bg-color: rgba(255, 255, 255, 0.72);
+    --cover-title-text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 12px;
 
-    /* visual guard around title and description, when the feature is enabled */
-    --cover-title-and-description-guard-bg-color: rgba(255, 255, 255, 0.6);
-    --cover-title-text-shadow: white 0px 0px 7px;
+    /* === Sticky Navigation Bar === */
+    --sticky-menu-text-color: #d4af37;
+    --nav-floating-bg: rgba(12, 20, 33, 0.82);
+    --nav-floating-border: rgba(212, 175, 55, 0.25);
+    --nav-floating-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
 
+    /* === Alternating Content Sections === */
+    /* Light Section: Warm Alabaster/Ivory */
+    --section-light-bg-color: #faf8f5;
+    --section-light-text-color: #0f172a;
+    --section-light-text-muted: #64748b;
+    --section-light-card-bg: rgba(255, 255, 255, 0.95);
+    --section-light-card-border: rgba(12, 20, 33, 0.08);
 
-    /* === sticky top/left navigation menus === */
-    --sticky-menu-text-color: #C4944C;
+    /* Dark Section: Velvet Obsidian / Deep Midnight */
+    --section-dark-bg-color: #0c1421;
+    --section-dark-text-color: #f8fafc;
+    --section-dark-text-muted: #94a3b8;
+    --section-dark-card-bg: rgba(17, 26, 42, 0.75);
+    --section-dark-card-border: rgba(212, 175, 55, 0.2);
 
+    /* General Quotes & Code */
+    --section-uni-quote: #94a3b8;
+    --section-uni-code-bg-color: rgba(212, 175, 55, 0.1);
 
-    /* === Alternating content (post) sections  === */
-    /* Light section - text color */
-    --section-light-text-color: #001939;
-    /* Light section - background color */
-    --section-light-bg-color: #ffffff;
-
-    /* Dark section - text color */
-    --section-dark-text-color: var(--section-light-bg-color);
-    /* Dark section - background color */
-    --section-dark-bg-color: #001939;
-
-    /* Light&Dark section >quote. Suppressive color, compared to 'Light section - text color'*/
-    --section-uni-quote: grey;
-    /* Light&Dark section `code` a bit darker than 'Light section - background color' */
-    --section-uni-code-bg-color: #e0ded7;
-
-    /* === Single pages=== */
+    /* === Single Pages === */
     --single-page-text-color: var(--section-light-text-color);
     --single-page-bg-color: var(--section-light-bg-color);
 
     /* === Footer === */
-    --footer-color-background: #22343a;
-    --footer-color: #bbc7cc;
+    --footer-color-background: #080d15;
+    --footer-color: #94a3b8;
+    --footer-link-color: #d4af37;
 
     /* === Lists === */
-    /* define list element for unnumbered lists, leave empty for default list element */
-    --ul-li-icon: fa-asterisk;
+    --ul-li-icon: fa-circle;
 
-    /* === Menu Cards & Accents === */
+    /* === Menu Cards & Elevation === */
     --card-light-bg: #ffffff;
-    --card-light-border: rgba(0, 25, 57, 0.08);
-    --card-light-shadow: 0 4px 16px rgba(0, 25, 57, 0.06);
-    --card-dark-bg: rgba(255, 255, 255, 0.05);
-    --card-dark-border: rgba(255, 255, 255, 0.12);
-    --card-dark-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    --accent-gold: #C4944C;
+    --card-light-border: rgba(12, 20, 33, 0.08);
+    --card-light-shadow: 0 8px 24px -4px rgba(12, 20, 33, 0.06), 0 2px 6px -1px rgba(12, 20, 33, 0.02);
+    --card-light-shadow-hover: 0 16px 36px -6px rgba(12, 20, 33, 0.12), 0 0 0 1px rgba(212, 175, 55, 0.35);
+
+    --card-dark-bg: rgba(17, 26, 42, 0.78);
+    --card-dark-border: rgba(212, 175, 55, 0.18);
+    --card-dark-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.5), 0 2px 8px -1px rgba(0, 0, 0, 0.3);
+    --card-dark-shadow-hover: 0 20px 44px -8px rgba(0, 0, 0, 0.65), 0 0 0 1.5px rgba(212, 175, 55, 0.5);
+
+    /* === Scrollbars === */
+    --scrollbar-thumb: rgba(212, 175, 55, 0.45);
+    --scrollbar-thumb-hover: rgba(212, 175, 55, 0.8);
+    --scrollbar-track: transparent;
 }
+

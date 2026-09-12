@@ -80,10 +80,13 @@
 	{{ end }}
 
         <div id="site-head-content" class="inner">
-	    {{ with resources.Get .Params.header_logo }}<img id="blog-logo" alt="" src="{{ .RelPermalink }}" />{{ end }}
+            <div class="hero-badge-wrap">
+                <span class="hero-badge"><span class="hero-badge-star">✦</span> {{ if in $.Language "en" }}Boutique Hotel & Café Restaurant{{ else if in $.Language "ar" }}فندق بوتيك ومقهى ومطعم{{ else }}بوتیک هتل و کافه رستوران{{ end }} <span class="hero-badge-star">✦</span></span>
+            </div>
+	    {{ with resources.Get .Params.header_logo }}<img id="blog-logo" alt="هیران" src="{{ .RelPermalink }}" />{{ end }}
 
             {{ if .Site.Params.title_guard }}<div class="title-and-description-guard">{{ end }}
-              <!-- {{ with .Params.header_headline }}<h1 class="blog-title">{{ . | safeHTML }}</h1>{{ end }} -->
+              {{ with .Params.header_headline }}<h1 class="blog-title visually-hidden">{{ . | safeHTML }}</h1>{{ end }}
               {{ with .Params.header_subheadline }}<h2 class="blog-description">{{ . | safeHTML }}</h2>{{ end }}
             {{ if .Site.Params.title_guard }}</div>{{ end }}
 
@@ -181,6 +184,11 @@
             <article id='{{ anchorize $fnav_title }}' data-item-index='{{ (add $index_val 1) }}' class='post {{ if eq $index_val 0 }}first{{ end }} {{ if eq (add $index_val 1) (len $content) }}last{{ end }}'>
                 <header class="post-header">
                     <h2 class="post-title">{{ .Title | emojify | safeHTML }}</h2>
+                    <div class="section-title-divider">
+                        <span class="divider-line"></span>
+                        <span class="divider-diamond">◆</span>
+                        <span class="divider-line"></span>
+                    </div>
                 </header>
                 <section class="post-content">
                   {{ .Content }}

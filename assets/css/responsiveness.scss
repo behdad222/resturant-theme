@@ -4,10 +4,13 @@
    ========================================================================== */
 
 @media only screen and (max-width: 1130px) {
-  /* Elegant horizontal scrollable pill navbar with fixed search button */
+  /* Floating pill navbar on tablets & phablets */
   .fixed-nav {
-    padding: 8px 10px;
-    padding-top: calc(8px + env(safe-area-inset-top, 0px));
+    top: 8px;
+    width: calc(100% - 20px);
+    padding: 7px 12px;
+    padding-top: calc(7px + env(safe-area-inset-top, 0px));
+    border-radius: 9999px;
   }
 
   .fixed-nav-wrapper {
@@ -18,8 +21,8 @@
   }
 
   .fn-search-btn {
-    padding: 7px 14px;
-    font-size: 1.3rem;
+    padding: 6px 14px;
+    font-size: 1.25rem;
   }
 
   .fn-items-container {
@@ -39,8 +42,8 @@
   }
 
   a.fn-item {
-    padding: 7px 14px;
-    font-size: 1.3rem;
+    padding: 6px 14px;
+    font-size: 1.25rem;
   }
 
   blockquote {
@@ -53,10 +56,10 @@
 
   #site-head {
     box-sizing: border-box;
-    min-height: 80vh;
-    min-height: 80dvh;
+    min-height: 85vh;
+    min-height: 85dvh;
     height: auto;
-    padding: 12% 16px;
+    padding: 10% 16px;
     margin-bottom: 0rem;
     display: flex;
     align-items: center;
@@ -71,9 +74,14 @@
     }
   }
 
+  .hero-badge {
+    font-size: 1.2rem;
+    padding: 5px 16px;
+  }
+
   #blog-logo {
-    height: 130px;
-    max-width: 60%;
+    height: 160px;
+    max-width: 65%;
     width: auto;
     margin-bottom: 16px;
   }
@@ -83,8 +91,8 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
-    margin-top: 1.5rem;
-    max-width: 600px;
+    margin-top: 1.6rem;
+    max-width: 640px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -94,19 +102,19 @@
     padding: 8px 18px;
     margin-top: 0;
     border-radius: 9999px;
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     font-weight: 500;
   }
 
   .blog-title {
-    font-size: 4rem;
+    font-size: 3.8rem;
     letter-spacing: -1px;
   }
 
   .blog-description {
-    font-size: 2.2rem;
+    font-size: 2rem;
     line-height: 1.5em;
   }
 
@@ -117,7 +125,7 @@
 
   /* skip the top menu when scrolling */
   .post-holder .post {
-    scroll-margin-top: 58px;
+    scroll-margin-top: 64px;
   }
 
   .post-template .post {
@@ -129,20 +137,20 @@
   }
 
   h1 {
-    font-size: 4.8rem;
+    font-size: 4.2rem;
     text-indent: -2px;
   }
 
   h2 {
-    font-size: 3.8rem;
+    font-size: 3.4rem;
   }
 
   h3 {
-    font-size: 3.3rem;
+    font-size: 3rem;
   }
 
   h4 {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -168,8 +176,11 @@
 
 @media only screen and (max-width: 500px) {
   .fixed-nav {
+    top: 6px;
+    width: calc(100% - 12px);
     padding: 6px 8px;
     padding-top: calc(6px + env(safe-area-inset-top, 0px));
+    border-radius: 9999px;
   }
 
   .fixed-nav-wrapper {
@@ -177,9 +188,9 @@
   }
 
   .fn-search-btn {
-    padding: 6px 12px;
-    font-size: 1.25rem;
-    gap: 5px;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    gap: 4px;
   }
 
   .fn-items-container {
@@ -188,29 +199,29 @@
   }
 
   a.fn-item {
-    padding: 6px 12px;
-    font-size: 1.25rem;
+    padding: 5px 12px;
+    font-size: 1.2rem;
   }
 
   .fixed-nav-search-inner {
     input#fixed-menu-search-input {
-      height: 40px;
-      font-size: 1.25rem;
-      padding: 0 40px 0 36px;
+      height: 38px;
+      font-size: 1.2rem;
+      padding: 0 38px 0 34px;
     }
 
     .fixed-search-icon {
-      right: 14px;
-      font-size: 1.35rem;
+      right: 12px;
+      font-size: 1.25rem;
     }
 
     .fixed-search-clear-btn {
-      left: 10px;
+      left: 8px;
     }
 
     .fixed-search-close-btn {
-      height: 40px;
-      padding: 0 12px;
+      height: 38px;
+      padding: 0 10px;
 
       .close-text {
         display: none;
@@ -223,14 +234,19 @@
   }
 
   .post-holder .post {
-    scroll-margin-top: 54px;
+    scroll-margin-top: 56px;
+  }
+
+  .hero-badge {
+    font-size: 1.15rem;
+    padding: 4px 14px;
   }
 
   #blog-logo {
-    width: 60%;
-    max-width: 220px;
+    width: 65%;
+    max-width: 200px;
     height: auto;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
 
   .inner,
@@ -253,9 +269,9 @@
   #site-head {
     min-height: 85vh;
     min-height: 85dvh;
-    padding: 30px 12px;
-    padding-top: calc(30px + env(safe-area-inset-top, 0px));
-    padding-bottom: calc(30px + env(safe-area-inset-bottom, 0px));
+    padding: 28px 12px;
+    padding-top: calc(28px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));
   }
 
   #site-head #site-languages {
@@ -271,8 +287,8 @@
 
   #header-arrow {
     margin: 20px auto 0 auto;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     font-size: 18px;
   }
 
@@ -283,7 +299,7 @@
 
   #site-head a.btn {
     font-size: 1.25rem;
-    padding: 7px 14px;
+    padding: 7px 16px;
   }
 
   .blog-title {
@@ -304,7 +320,11 @@
   }
 
   .post-title {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
+  }
+
+  .section-title-divider {
+    margin: 8px auto 20px auto;
   }
 
   h3 {
@@ -318,53 +338,55 @@
   /* Single-column food cards on phones */
   .menu-items-grid {
     grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 16px;
+    gap: 16px;
+    margin-top: 18px;
   }
 
   .menu-item-card {
-    border-radius: 14px;
+    border-radius: 18px;
   }
 
   .menu-item-img-wrapper {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 10;
   }
 
   .menu-item-info {
-    padding: 12px 14px;
+    padding: 14px 16px;
   }
 
   .menu-item-title {
-    font-size: 1.65rem;
+    font-size: 1.75rem;
   }
 
   .menu-item-price {
-    font-size: 1.45rem;
+    font-size: 1.55rem;
   }
 
   .menu-item-description {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
+    line-height: 1.65;
     margin: 4px 0 8px 0;
   }
 
   .contact-cards-grid {
-    gap: 10px;
+    gap: 12px;
     margin: 16px 0;
   }
 
   .contact-card {
-    padding: 10px 14px;
-    border-radius: 12px;
+    padding: 14px 16px;
+    border-radius: 16px;
   }
 
   .contact-icon-box {
-    width: 38px;
-    height: 38px;
-    font-size: 1.5rem;
+    width: 42px;
+    height: 42px;
+    font-size: 1.7rem;
+    border-radius: 12px;
   }
 
   .contact-value {
-    font-size: 1.35rem;
+    font-size: 1.45rem;
   }
 
   .post-template .post {
@@ -377,7 +399,7 @@
 
   .site-footer {
     font-size: 1.2rem;
-    padding: 1.5rem 1rem;
-    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    padding: 2rem 1rem;
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
   }
 }

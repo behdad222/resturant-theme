@@ -16,6 +16,7 @@
 		{{ end }}
 		{{ if or .Params.over .Params.Over }}
 		<div class="badge-over-overlay">
+			<span class="badge-over-tag"><i class="fa fa-ban"></i> {{ if in $.Language "en" }}Sold Out{{ else if in $.Language "ar" }}نفدت الكمية{{ else }}اتمام موجودی{{ end }}</span>
 		</div>
 		{{ end }}
 	</div>
@@ -34,13 +35,13 @@
 					{{ end }}
 				</h3>
 				{{ if or .Params.special .Params.Special }}
-				<span class="badge-special-mini" title="{{ if in $.Language "en" }}Special{{ else if in $.Language "ar" }}مميّز{{ else }}ویژه{{ end }}"><i class="fa fa-star"></i></span>
+				<span class="badge-special-mini" title="{{ if in $.Language "en" }}Chef's Special{{ else if in $.Language "ar" }}مميّز{{ else }}پیشنهاد ویژه{{ end }}"><i class="fa fa-star"></i></span>
 				{{ end }}
 			</div>
 
 			{{ if or .Params.over .Params.Over }}
 			<div class="menu-item-price is-over">
-				<span class="price-val-over">{{ if in $.Language "en" }}Sold Out{{ else if in $.Language "ar" }}نفدت الكمية{{ else }}تمام شد{{ end }}</span>
+				<span class="price-val-over">{{ if in $.Language "en" }}Sold Out{{ else if in $.Language "ar" }}نفدت الكمية{{ else }}اتمام موجودی{{ end }}</span>
 			</div>
 			{{ else if .Params.Price }}
 			<div class="menu-item-price">
@@ -52,10 +53,17 @@
 					<span class="price-unit">تمن</span>
 				{{ else }}
 					<span class="price-val">{{ partial "persianNumber.html" .Params.Price }}</span>
+					<span class="price-unit">تومان</span>
 				{{ end }}
 			</div>
 			{{ end }}
 		</div>
+
+		{{ if not (in $.Language "en") }}
+			{{ with .Params.Name_en }}
+			<span class="menu-item-subtitle-en">{{ . }}</span>
+			{{ end }}
+		{{ end }}
 
 		{{ $desc := "" }}
 		{{ if in $.Language "en" }}
@@ -80,7 +88,6 @@
 
 		{{ if and $ingredients (gt (len $ingredients) 0) }}
 		<div class="menu-item-ingredients">
-			<!-- <span class="ingredients-label">{{ if in $.Language "en" }}Ingredients:{{ else if in $.Language "ar" }}المكونات:{{ else }}مواد تشکیل‌دهنده:{{ end }}</span> -->
 			<div class="ingredients-tags">
 				{{ range $ingredients }}
 					<span class="ingredient-tag">{{ . }}</span>

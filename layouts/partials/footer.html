@@ -20,7 +20,9 @@
     {{ if ne .Site.Params.footer.showContactIcons false }}
       <section class="icons">
         {{ range .Site.Params.contacts }}
-          <a href="{{ .url | safeURL }}" aria-label='{{ i18n "{{ .label }}" }}'><i class="{{ .icon }}"></i></a>
+          {{ if .url }}
+          <a href="{{ .url | safeURL }}" aria-label="{{ or .label "ارتباط" }}"{{ if (findRE "^https?://" .url) }} target="_blank" rel="noopener noreferrer"{{ end }}><i class="{{ .icon }}"></i></a>
+          {{ end }}
         {{ end }}
       </section>
     {{ end }}
