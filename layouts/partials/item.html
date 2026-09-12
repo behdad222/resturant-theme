@@ -14,11 +14,6 @@
 		{{ if or .Params.special .Params.Special }}
 		<span class="badge-special-pill" title="{{ if in $.Language "en" }}Special{{ else if in $.Language "ar" }}مميّز{{ else }}ویژه{{ end }}"><i class="fa fa-star"></i> {{ if in $.Language "en" }}Special{{ else if in $.Language "ar" }}مميّز{{ else }}ویژه{{ end }}</span>
 		{{ end }}
-		{{ if or .Params.over .Params.Over }}
-		<div class="badge-over-overlay">
-			<span class="badge-over-tag"><i class="fa fa-ban"></i> {{ if in $.Language "en" }}Sold Out{{ else if in $.Language "ar" }}نفدت الكمية{{ else }}اتمام موجودی{{ end }}</span>
-		</div>
-		{{ end }}
 	</div>
 	{{ end }}
 
@@ -41,7 +36,7 @@
 
 			{{ if or .Params.over .Params.Over }}
 			<div class="menu-item-price is-over">
-				<span class="price-val-over">{{ if in $.Language "en" }}Sold Out{{ else if in $.Language "ar" }}نفدت الكمية{{ else }}اتمام موجودی{{ end }}</span>
+				<span class="price-val-over">{{ if in $.Language "en" }}Service Ended{{ else if in $.Language "ar" }}انتهاء الخدمة{{ else }}پایان سرویس{{ end }}</span>
 			</div>
 			{{ else if .Params.Price }}
 			<div class="menu-item-price">
@@ -53,7 +48,6 @@
 					<span class="price-unit">تمن</span>
 				{{ else }}
 					<span class="price-val">{{ partial "persianNumber.html" .Params.Price }}</span>
-					<span class="price-unit">تومان</span>
 				{{ end }}
 			</div>
 			{{ end }}
