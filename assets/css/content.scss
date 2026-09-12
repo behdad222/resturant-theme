@@ -20,14 +20,14 @@ body {
 }
 
 ::-moz-selection {
-  color: #0c1421;
-  background: var(--accent-gold);
+  color: #ffffff;
+  background: rgba(12, 20, 33, 0.75);
   text-shadow: none;
 }
 
 ::selection {
-  color: #0c1421;
-  background: var(--accent-gold);
+  color: #ffffff;
+  background: rgba(12, 20, 33, 0.75);
   text-shadow: none;
 }
 

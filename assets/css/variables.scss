@@ -21,29 +21,29 @@
     --cover-title-text-shadow: rgba(0, 0, 0, 0.25) 0px 2px 12px;
 
     /* === Sticky Navigation Bar === */
-    --sticky-menu-text-color: #d4af37;
-    --nav-floating-bg: rgba(12, 20, 33, 0.82);
-    --nav-floating-border: rgba(212, 175, 55, 0.25);
-    --nav-floating-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+    --sticky-menu-text-color: #f1f5f9;
+    --nav-floating-bg: rgba(15, 23, 42, 0.88);
+    --nav-floating-border: rgba(255, 255, 255, 0.08);
+    --nav-floating-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 
     /* === Alternating Content Sections === */
     /* Light Section: Warm Alabaster/Ivory */
     --section-light-bg-color: #faf8f5;
     --section-light-text-color: #0f172a;
     --section-light-text-muted: #64748b;
-    --section-light-card-bg: rgba(255, 255, 255, 0.95);
-    --section-light-card-border: rgba(12, 20, 33, 0.08);
+    --section-light-card-bg: #ffffff;
+    --section-light-card-border: transparent;
 
     /* Dark Section: Velvet Obsidian / Deep Midnight */
     --section-dark-bg-color: #0c1421;
     --section-dark-text-color: #f8fafc;
     --section-dark-text-muted: #94a3b8;
-    --section-dark-card-bg: rgba(17, 26, 42, 0.75);
-    --section-dark-card-border: rgba(212, 175, 55, 0.2);
+    --section-dark-card-bg: rgba(20, 29, 46, 0.85);
+    --section-dark-card-border: transparent;
 
     /* General Quotes & Code */
     --section-uni-quote: #94a3b8;
-    --section-uni-code-bg-color: rgba(212, 175, 55, 0.1);
+    --section-uni-code-bg-color: rgba(255, 255, 255, 0.06);
 
     /* === Single Pages === */
     --single-page-text-color: var(--section-light-text-color);
@@ -52,25 +52,24 @@
     /* === Footer === */
     --footer-color-background: #080d15;
     --footer-color: #94a3b8;
-    --footer-link-color: #d4af37;
+    --footer-link-color: #cbd5e1;
 
     /* === Lists === */
     --ul-li-icon: fa-circle;
 
-    /* === Menu Cards & Elevation === */
+    /* === Menu Cards & Elevation (Borderless & Clean Surface Driven) === */
     --card-light-bg: #ffffff;
-    --card-light-border: rgba(12, 20, 33, 0.08);
-    --card-light-shadow: 0 8px 24px -4px rgba(12, 20, 33, 0.06), 0 2px 6px -1px rgba(12, 20, 33, 0.02);
-    --card-light-shadow-hover: 0 16px 36px -6px rgba(12, 20, 33, 0.12), 0 0 0 1px rgba(212, 175, 55, 0.35);
+    --card-light-border: transparent;
+    --card-light-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
+    --card-light-shadow-hover: 0 16px 36px -4px rgba(0, 0, 0, 0.1);
 
-    --card-dark-bg: rgba(17, 26, 42, 0.78);
-    --card-dark-border: rgba(212, 175, 55, 0.18);
-    --card-dark-shadow: 0 12px 32px -6px rgba(0, 0, 0, 0.5), 0 2px 8px -1px rgba(0, 0, 0, 0.3);
-    --card-dark-shadow-hover: 0 20px 44px -8px rgba(0, 0, 0, 0.65), 0 0 0 1.5px rgba(212, 175, 55, 0.5);
+    --card-dark-bg: rgba(20, 29, 46, 0.85);
+    --card-dark-border: transparent;
+    --card-dark-shadow: 0 8px 28px -4px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+    --card-dark-shadow-hover: 0 20px 42px -6px rgba(0, 0, 0, 0.65);
 
     /* === Scrollbars === */
-    --scrollbar-thumb: rgba(212, 175, 55, 0.45);
-    --scrollbar-thumb-hover: rgba(212, 175, 55, 0.8);
+    --scrollbar-thumb: rgba(148, 163, 184, 0.35);
+    --scrollbar-thumb-hover: rgba(148, 163, 184, 0.65);
     --scrollbar-track: transparent;
 }
-
