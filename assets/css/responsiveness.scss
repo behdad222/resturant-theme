@@ -204,19 +204,17 @@
   }
 
   .fixed-nav-search-inner {
-    input#fixed-menu-search-input {
-      height: 38px;
-      font-size: 1.2rem;
-      padding: 0 38px 0 34px;
-    }
+    .fixed-search-input-wrap {
+      input#fixed-menu-search-input {
+        height: 38px;
+        font-size: 1.2rem;
+        padding: 0 38px 0 16px;
+      }
 
-    .fixed-search-icon {
-      right: 12px;
-      font-size: 1.25rem;
-    }
-
-    .fixed-search-clear-btn {
-      left: 8px;
+      .fixed-search-icon {
+        right: 12px;
+        font-size: 1.25rem;
+      }
     }
 
     .fixed-search-close-btn {

@@ -140,10 +140,11 @@
         </div>
         <div class="fixed-nav-search-bar" id="fixed-nav-search-bar" style="display: none;">
             <div class="fixed-nav-search-inner">
-                <i class="fa fa-search fixed-search-icon"></i>
-                <input type="text" id="fixed-menu-search-input" placeholder="{{ if in $.Language "en" }}Search in menu (e.g. Latte, Pasta, Shake...){{ else if in $.Language "ar" }}البحث في القائمة...{{ else }}جستجو در منو (لاته، پاستا، شیک…){{ end }}" autocomplete="off" />
-                <button type="button" id="fixed-menu-search-clear" class="fixed-search-clear-btn" aria-label="Clear" style="display: none;"><i class="fa fa-times"></i></button>
-                <button type="button" id="fixed-nav-search-close" class="fixed-search-close-btn" aria-label="{{ if in $.Language "en" }}Close{{ else if in $.Language "ar" }}إغلاق{{ else }}بستن{{ end }}">
+                <div class="fixed-search-input-wrap">
+                    <i class="fa fa-search fixed-search-icon"></i>
+                    <input type="text" id="fixed-menu-search-input" placeholder="{{ if in $.Language "en" }}Search in menu (e.g. Latte, Pasta, Shake...){{ else if in $.Language "ar" }}البحث في القائمة...{{ else }}جستجو در منو (لاته، پاستا، شیک…){{ end }}" autocomplete="off" />
+                </div>
+                <button type="button" id="fixed-nav-search-close" class="fixed-search-close-btn" aria-label="{{ if in $.Language "en" }}Close{{ else if in $.Language "ar" }}إغلاق{{ else }}بستن{{ end }}" title="{{ if in $.Language "en" }}Close{{ else if in $.Language "ar" }}إغلاق{{ else }}بستن{{ end }}">
                     <i class="fa fa-times"></i>
                 </button>
             </div>
@@ -156,7 +157,6 @@
             <div class="menu-search-input-wrap">
                 <i class="fa fa-search search-icon"></i>
                 <input type="text" id="menu-search-input" placeholder="{{ if in $.Language "en" }}Search in menu (e.g. Latte, Pasta, Shake...){{ else if in $.Language "ar" }}البحث في القائمة...{{ else }}جستجو در منو (لاته، پاستا، شیک…){{ end }}" autocomplete="off" />
-                <button type="button" id="menu-search-clear" class="search-clear-btn" aria-label="Clear"><i class="fa fa-times"></i></button>
             </div>
             <div class="menu-filter-chips">
                 <button type="button" class="filter-chip active" data-filter="all">
