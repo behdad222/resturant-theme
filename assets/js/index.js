@@ -33,6 +33,7 @@ var $sitehead = $("#site-head");
     // Cover arrow button smooth scroll
     $("#header-arrow").on("click", function (e) {
       e.preventDefault();
+      $(this).trigger("blur");
       var $target = $(".post.first");
       if (!$target.length) {
         $target = $(".post").first();
@@ -45,6 +46,7 @@ var $sitehead = $("#site-head");
 
     // Cover menu buttons smooth scroll
     $("a.btn.site-menu").on("click", function (e) {
+      $(this).trigger("blur");
       var anchor = $(this).data("title-anchor");
       if (anchor) {
         var $el = $("#" + anchor);
@@ -114,6 +116,7 @@ var $sitehead = $("#site-head");
 
       $(".fn-item").on("click", function (e) {
         var $btn = $(this);
+        $btn.trigger("blur");
         var itemIdx = $btn.attr("data-item-index");
         var href = $btn.attr("href");
 
@@ -324,6 +327,7 @@ var $sitehead = $("#site-head");
       $(this).addClass("active");
       activeFilter = $(this).data("filter");
       filterMenu();
+      $(this).trigger("blur");
     });
 
     $resetBtn.on("click", function () {
@@ -333,6 +337,7 @@ var $sitehead = $("#site-head");
       $('.filter-chip[data-filter="all"]').addClass("active");
       activeFilter = "all";
       filterMenu();
+      $(this).trigger("blur");
     });
   });
 
