@@ -1,7 +1,8 @@
 <div class="menu-item-card{{ if or .Params.special .Params.Special }} is-special{{ end }}{{ if or .Params.over .Params.Over }} is-over{{ end }}"
-	data-name="{{ (or .Params.Name_fa .Title) | lower }}"
-	data-desc="{{ (or .Params.Description_fa "") | lower }}"
-	data-ingredients="{{ delimit (or .Params.Ingredients_fa slice) " " | lower }}"
+	data-name="{{ (or .Params.Name_fa .Title) | lower }}{{ with .Params.Name_en }} {{ . | lower }}{{ end }}"
+	data-category="{{ (or .Params.Category_id "") | lower }}"
+	data-desc="{{ (or .Params.Description_fa "") | lower }}{{ with .Params.Description_en }} {{ . | lower }}{{ end }}"
+	data-ingredients="{{ delimit (or .Params.Ingredients_fa slice) " " | lower }}{{ with .Params.Ingredients_en }} {{ delimit . " " | lower }}{{ end }}"
 	data-special="{{ if or .Params.special .Params.Special }}true{{ else }}false{{ end }}"
 	data-vegan="{{ if or .Params.vegan .Params.Vegan }}true{{ else }}false{{ end }}"
 	data-over="{{ if or .Params.over .Params.Over }}true{{ else }}false{{ end }}">

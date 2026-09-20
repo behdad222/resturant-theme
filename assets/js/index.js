@@ -55,12 +55,17 @@ var $sitehead = $("#site-head");
         .replace(/آ/g, "ا")
         .replace(/أ/g, "ا")
         .replace(/إ/g, "ا")
+        .replace(/قلیون/g, "قلیان") // normalize colloquial "قلیون" to "قلیان"
+        .replace(/قلیو/g, "قلیا")
+        .replace(/\u200c/g, " ") // normalize Persian ZWNJ (half-space) to space
+        .replace(/\s+/g, " ")
         .trim();
     }
 
     function filterMenu() {
       var rawQuery = ($searchInput.val() || "");
       var query = normalizeText(rawQuery);
+      var queryTerms = query.length > 0 ? query.split(/\s+/).filter(Boolean) : [];
 
       if (rawQuery.length > 0) {
         $fixedNavSearchBtn.addClass("has-query");
@@ -71,7 +76,7 @@ var $sitehead = $("#site-head");
       }
 
       var totalVisibleItems = 0;
-      var isFiltering = query.length > 0 || activeFilter !== "all";
+      var isFiltering = queryTerms.length > 0 || activeFilter !== "all";
 
       $(".post-holder").each(function () {
         var $holder = $(this);
@@ -87,6 +92,9 @@ var $sitehead = $("#site-head");
           return;
         }
 
+        var categoryTitle = normalizeText($holder.attr("data-category") || $holder.find(".post-title").text() || "");
+        var categoryId = normalizeText($holder.attr("data-category-id") || "");
+
         var visibleInCategory = 0;
 
         $grid.find(".menu-item-card").each(function () {
@@ -94,14 +102,16 @@ var $sitehead = $("#site-head");
           var name = normalizeText($card.attr("data-name") || "");
           var desc = normalizeText($card.attr("data-desc") || "");
           var ingredients = normalizeText($card.attr("data-ingredients") || "");
+          var cardCategory = normalizeText($card.attr("data-category") || "");
           var isSpecial = ($card.attr("data-special") === "true");
           var isVegan = ($card.attr("data-vegan") === "true");
 
           var matchesQuery = true;
-          if (query.length > 0) {
-            matchesQuery = name.indexOf(query) !== -1 ||
-                           desc.indexOf(query) !== -1 ||
-                           ingredients.indexOf(query) !== -1;
+          if (queryTerms.length > 0) {
+            var cardSearchable = categoryTitle + " " + categoryId + " " + name + " " + desc + " " + ingredients + " " + cardCategory;
+            matchesQuery = queryTerms.every(function (term) {
+              return cardSearchable.indexOf(term) !== -1;
+            });
           }
 
           var matchesChip = true;
