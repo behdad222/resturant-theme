@@ -6,10 +6,9 @@
 @media only screen and (max-width: 1130px) {
   /* Floating pill navbar on tablets & phablets */
   .fixed-nav {
-    top: 8px;
+    top: calc(10px + env(safe-area-inset-top, 0px));
     width: calc(100% - 20px);
     padding: 7px 12px;
-    padding-top: calc(7px + env(safe-area-inset-top, 0px));
     border-radius: 9999px;
   }
 
@@ -17,7 +16,7 @@
     justify-content: flex-start;
     gap: 8px;
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .fn-search-btn {
@@ -38,12 +37,18 @@
     gap: 6px;
     flex: 1;
     min-width: 0;
+    padding: 4px 0;
     scroll-padding: 0 10px;
   }
 
   a.fn-item {
     padding: 6px 14px;
     font-size: 1.25rem;
+    line-height: 1.35;
+
+    &.active {
+      transform: none;
+    }
   }
 
   blockquote {
@@ -125,7 +130,7 @@
 
   /* skip the top menu when scrolling */
   .post-holder .post {
-    scroll-margin-top: 64px;
+    scroll-margin-top: calc(64px + env(safe-area-inset-top, 0px));
   }
 
   .post-template .post {
@@ -176,15 +181,15 @@
 
 @media only screen and (max-width: 500px) {
   .fixed-nav {
-    top: 6px;
-    width: calc(100% - 12px);
-    padding: 6px 8px;
-    padding-top: calc(6px + env(safe-area-inset-top, 0px));
+    top: calc(10px + env(safe-area-inset-top, 0px));
+    width: calc(100% - 16px);
+    padding: 6px 10px;
     border-radius: 9999px;
   }
 
   .fixed-nav-wrapper {
     gap: 6px;
+    overflow: visible;
   }
 
   .fn-search-btn {
@@ -195,12 +200,18 @@
 
   .fn-items-container {
     gap: 5px;
+    padding: 4px 0;
     scroll-padding: 0 6px;
   }
 
   a.fn-item {
     padding: 5px 12px;
     font-size: 1.2rem;
+    line-height: 1.35;
+
+    &.active {
+      transform: none;
+    }
   }
 
   .fixed-nav-search-inner {
@@ -232,7 +243,7 @@
   }
 
   .post-holder .post {
-    scroll-margin-top: 56px;
+    scroll-margin-top: calc(58px + env(safe-area-inset-top, 0px));
   }
 
   .hero-badge {
