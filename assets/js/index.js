@@ -32,6 +32,7 @@ var $sitehead = $("#site-head");
   $(document).ready(function () {
     // ========== Instant Menu Search & Filter ==========
     var $searchInput = $("#menu-search-input");
+    var $searchClearBtn = $("#menu-search-clear");
     var $filterChips = $(".filter-chip");
     var $noResults = $("#search-no-results");
     var $resetBtn = $("#search-reset-btn");
@@ -42,7 +43,18 @@ var $sitehead = $("#site-head");
     var $fixedNavWrapper = $(".fixed-nav-wrapper");
     var $fixedNavSearchBar = $("#fixed-nav-search-bar");
     var $fixedSearchInput = $("#fixed-menu-search-input");
+    var $fixedSearchClearBtn = $("#fixed-search-clear");
     var $fixedCloseBtn = $("#fixed-nav-search-close");
+
+    function updateClearButtons(query) {
+      if (query && query.trim().length > 0) {
+        $searchClearBtn.css("display", "inline-flex");
+        $fixedSearchClearBtn.css("display", "inline-flex");
+      } else {
+        $searchClearBtn.hide();
+        $fixedSearchClearBtn.hide();
+      }
+    }
 
     function normalizeText(str) {
       if (!str) return "";
@@ -66,6 +78,8 @@ var $sitehead = $("#site-head");
       var rawQuery = ($searchInput.val() || "");
       var query = normalizeText(rawQuery);
       var queryTerms = query.length > 0 ? query.split(/\s+/).filter(Boolean) : [];
+
+      updateClearButtons(rawQuery);
 
       if (rawQuery.length > 0) {
         $fixedNavSearchBtn.addClass("has-query");
@@ -145,11 +159,9 @@ var $sitehead = $("#site-head");
     }
 
     function resetSearch() {
-      var query = ($searchInput.val() || "") + ($fixedSearchInput.val() || "");
-      var isFiltered = query.length > 0 || activeFilter !== "all";
-
       $searchInput.val("");
       $fixedSearchInput.val("");
+      updateClearButtons("");
       $filterChips.removeClass("active");
       $('.filter-chip[data-filter="all"]').addClass("active");
       activeFilter = "all";
@@ -161,9 +173,7 @@ var $sitehead = $("#site-head");
         $fixedNavWrapper.css("display", "flex");
       }
 
-      if (isFiltered) {
-        filterMenu();
-      }
+      filterMenu();
     }
 
     // Cover arrow button smooth scroll
@@ -301,34 +311,65 @@ var $sitehead = $("#site-head");
       e.preventDefault();
       $fixedNavWrapper.hide();
       $fixedNavSearchBar.css("display", "flex").hide().fadeIn(200);
-      $fixedSearchInput.val($searchInput.val());
+      var currentVal = $searchInput.val() || "";
+      $fixedSearchInput.val(currentVal);
+      updateClearButtons(currentVal);
       setTimeout(function () {
         $fixedSearchInput.focus();
       }, 50);
     });
 
+    // Close button (x) on fixed search bar resets search and shows all items
     $fixedCloseBtn.on("click", function (e) {
       e.preventDefault();
-      $fixedNavSearchBar.hide();
-      $fixedNavWrapper.css("display", "flex").hide().fadeIn(200);
+      resetSearch();
     });
 
-    // Escape key closes search bar
+    // Clear buttons (x) inside search inputs
+    $searchClearBtn.on("click", function (e) {
+      e.preventDefault();
+      $searchInput.val("");
+      $fixedSearchInput.val("");
+      updateClearButtons("");
+      $filterChips.removeClass("active");
+      $('.filter-chip[data-filter="all"]').addClass("active");
+      activeFilter = "all";
+      filterMenu();
+      $searchInput.focus();
+    });
+
+    $fixedSearchClearBtn.on("click", function (e) {
+      e.preventDefault();
+      $searchInput.val("");
+      $fixedSearchInput.val("");
+      updateClearButtons("");
+      $filterChips.removeClass("active");
+      $('.filter-chip[data-filter="all"]').addClass("active");
+      activeFilter = "all";
+      filterMenu();
+      $fixedSearchInput.focus();
+    });
+
+    // Escape key closes search bar or clears search
     $(document).on("keydown", function (e) {
-      if (e.key === "Escape" && $fixedNavSearchBar.is(":visible")) {
-        $fixedCloseBtn.trigger("click");
+      if (e.key === "Escape") {
+        if ($fixedNavSearchBar.is(":visible")) {
+          $fixedCloseBtn.trigger("click");
+        } else if ($searchInput.is(":focus") && $searchInput.val().length > 0) {
+          $searchClearBtn.trigger("click");
+        }
       }
     });
 
     // Fixed Search input events
-    $fixedSearchInput.on("input keyup paste", function () {
+    $fixedSearchInput.on("input keyup paste search change", function () {
       var val = $fixedSearchInput.val();
       $searchInput.val(val);
       filterMenu();
     });
 
     // Main page search input events
-    $searchInput.on("input keyup paste", function () {
+    $searchInput.on("input keyup paste search change", function () {
       var val = $searchInput.val();
       $fixedSearchInput.val(val);
       filterMenu();
