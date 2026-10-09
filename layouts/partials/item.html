@@ -42,13 +42,13 @@
 			{{ else if .Params.Price }}
 			<div class="menu-item-price">
 				{{ if in $.Language "en" }}
-					<span class="price-val">{{ .Params.Price }}</span>
+					<span class="price-val">{{ lang.FormatNumberCustom 0 .Params.Price "- . ," }}</span>
 					<span class="price-unit">Toman</span>
 				{{ else if in $.Language "ar" }}
-					<span class="price-val">{{ .Params.Price }}</span>
+					<span class="price-val">{{ lang.FormatNumberCustom 0 .Params.Price "- . ," }}</span>
 					<span class="price-unit">تمن</span>
 				{{ else }}
-					<span class="price-val">{{ partial "persianNumber.html" .Params.Price }}</span>
+					<span class="price-val">{{ partial "persianNumber.html" (lang.FormatNumberCustom 0 .Params.Price "- . ٬") }}</span>
 				{{ end }}
 			</div>
 			{{ end }}
